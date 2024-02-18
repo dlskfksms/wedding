@@ -1,0 +1,75 @@
+@font-face {
+  font-family: 'GangwonEdu_OTFLightA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFLightA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GangwonEdu_OTFBoldA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'GangwonEdu_OTFLightA', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.div1_name_section {
+  margin: 45px 0;
+}
+
+.div1_green_text {
+  color: olivedrab;
+  margin: 0 79px;
+}
+
+.div1_bold_text {
+  font-size: 37px;
+  margin: 6px 21px;
+}
+
+.div1_info_text {
+  text-align: center;
+  margin: 3px;
+}
+
+.div2_text_section {
+  background-color: antiquewhite;
+  padding: 80px 50px;
+  font-size: clamp(14px, 2vw, 19px);
+  line-height: 39px;
+  white-space: nowrap;
+  margin-top: -4px;
+}
+
+.div2_bold_text {
+  font-family: 'GangwonEdu_OTFBoldA', sans-serif;
+}
