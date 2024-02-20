@@ -54,7 +54,7 @@ img {
 }
 
 .div1_green_text {
-  color: olivedrab;
+  color: #dfe9e7;
   margin: 0 79px;
 }
 
@@ -69,7 +69,7 @@ img {
 }
 
 .div2_text_section {
-  background-color: #eae9a4;
+  background-color: #dfe9e7;
   padding: 80px 50px;
   font-size: clamp(14px, 2vw, 19px);
   line-height: 39px;
@@ -78,10 +78,10 @@ img {
   text-align: center;
 }
 
-/*.div2_bold_text {*/
-/*  font-family: 'GangwonEdu_OTFBoldA', sans-serif;*/
-/*}*/
+.div2_bold_text {
+  font-family: 'GangwonEdu_OTFBoldA', sans-serif;
+}
 
-/*.div2_text_section {*/
-/*  font-family: 'GangwonEdu_OTFLightA', sans-serif;*/
-/*}*/
+.div2_text_section {
+  font-family: 'GangwonEdu_OTFLightA', sans-serif;
+}
