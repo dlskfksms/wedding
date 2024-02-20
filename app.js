@@ -44,8 +44,8 @@ app.use(function(err, req, res, next) {
 /**
  * Start Express server.
  */
-app.listen(8080, '0.0.0.0', () => {
-  console.log(`App is running on port '8080'.`);
+app.listen(2000, '0.0.0.0', () => {
+  console.log(`App is running on port '2000'.`);
 });
 
 module.exports = app;
