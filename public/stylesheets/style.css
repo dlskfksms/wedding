@@ -50,7 +50,7 @@ img {
 }
 
 .div_name_section {
-  margin-bottom: 43px;
+  margin: 87px 0 43px 0;
 }
 
 .div_name_text {
@@ -65,7 +65,6 @@ img {
 
 .div_intro_section {
   font-family: 'GangwonEdu_OTFLightA', sans-serif;
-  background-color: #dfe9e7;
   padding: 80px 50px;
   font-size: clamp(15px, 2vw, 19px);
   line-height: 18px;
@@ -76,14 +75,6 @@ img {
 
 .div_intro_bold_text {
   font-family: 'GangwonEdu_OTFBoldA', sans-serif;
-}
-
-.div_eng_name_section {
-  font-family: 'Merriweather', sans-serif;
-  font-size: 14px;
-  height: 115px;
-  align-items: center;
-  letter-spacing:7px;
 }
 
 .letterspacing {
