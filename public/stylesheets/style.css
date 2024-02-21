@@ -45,43 +45,51 @@ img {
   justify-content: center;
 }
 
-.flex-column{
+.flex-column {
   flex-direction: column;
 }
 
-.div1_name_section {
-  margin: 45px 0;
+.div_name_section {
+  margin-bottom: 43px;
 }
 
-.div1_green_text {
-  color: #dfe9e7;
-  margin: 0 79px;
+.div_name_text {
+  font-size: clamp(16px, 2vw, 28px);
+  text-align: center;
 }
 
-.div1_bold_text {
-  font-size: 37px;
-  margin: 6px 21px;
-}
-
-.div1_info_text {
+.div_name_regular_text {
   text-align: center;
   margin: 3px;
 }
 
-.div2_text_section {
+.div_intro_section {
+  font-family: 'GangwonEdu_OTFLightA', sans-serif;
   background-color: #dfe9e7;
   padding: 80px 50px;
-  font-size: clamp(14px, 2vw, 19px);
-  line-height: 39px;
+  font-size: clamp(15px, 2vw, 19px);
+  line-height: 18px;
   white-space: nowrap;
   margin-top: -4px;
   text-align: center;
 }
 
-.div2_bold_text {
+.div_intro_bold_text {
   font-family: 'GangwonEdu_OTFBoldA', sans-serif;
 }
 
-.div2_text_section {
-  font-family: 'GangwonEdu_OTFLightA', sans-serif;
+.div_eng_name_section {
+  font-family: 'Merriweather', sans-serif;
+  font-size: 14px;
+  height: 115px;
+  align-items: center;
+  letter-spacing:7px;
+}
+
+.letterspacing {
+  letter-spacing:7px;
+}
+
+.number {
+  font-family: sans-serif !important;
 }
