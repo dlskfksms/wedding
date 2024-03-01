@@ -73,7 +73,7 @@ img {
   text-align: center;
 }
 
-.intro-title {
+.bold-text {
   font-family: 'GangwonEdu_OTFBoldA', sans-serif;
 }
 
@@ -313,4 +313,55 @@ body:has(.gallery-modal.active) {
   top: -44px;
   right: 12px;
   opacity: 60%;
+}
+
+.map-title {
+  text-align: center;
+  margin: 65px 0 10px;
+}
+
+.map-guide {
+  padding: 1rem;
+  font-size: 12px;
+}
+
+.map-address {
+  font-size: 18px;
+  margin: 10px 0 10px 0;
+  text-align: center
+}
+
+.map-address span {
+  font-size: 14px;
+  color: grey;
+  display: block;
+  margin: 5px 0;
+}
+
+.map-bold-text {
+  font-size: 15px;
+}
+
+.subway {
+  display: inline-block;
+  color: #fff;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  padding: 0 15px 0;
+  width: auto;
+  margin-right: 3px;
+}
+
+.subway-5 {
+  background-color: #704D93;
+}
+
+.subway-1 {
+  background-color: #365abc;
+}
+
+.map-guide svg {
+  width: 19px;
+  height: 19px;
 }
