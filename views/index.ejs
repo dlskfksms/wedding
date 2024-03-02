@@ -57,7 +57,7 @@
 
     <!-- 이름 소개 start  -->
     <section class="intro-name-section">
-        <img src="/images/gallery/introduce.png">
+        <img src="/images/gallery/introduce.gif">
         <div class="flex flex-column name-section">
             <span class="name-text">박동철 · 전회자 장남 박용준</span>
             <span class="name-text">이금열 · 김영순 장녀 이우리</span>
@@ -234,8 +234,8 @@
     <!-- 갤러리 start  -->
     <section class="gallery-section">
         <div class="gallery-title">
-            <div style="font-size: 20px;">ＧＡＬＬＥＲＹ</div>
-            <div style="font-size: 14px;">갤러리</div>
+            <div class="title">ＧＡＬＬＥＲＹ</div>
+            <div class="subtitle">갤러리</div>
         </div>
         <div class="gallery-grid">
             <img src="/images/thumb_gallery/img_01.jpg">
@@ -288,16 +288,23 @@
     <!-- 오시는길 start  -->
     <section class="map-section">
         <div class="map-title">
-            <div style="font-size: 20px;">Ｌｏｃａｔｉｏｎ</div>
-            <div style="font-size: 14px;">오시는 길</div>
+            <div class="title">ＬＯＣＡＴＩＯＮ</div>
+            <div class="subtitle">오시는 길</div>
         </div>
         <div style="background: rgba(100, 151, 186, 0.8); width: auto; padding: 16px;">
-        <div id="map"></div>
+            <div id="map"></div>
         </div>
         <div class="map-guide">
             <div class="map-address">
                 웨딩그룹위더스 영등포 펠리체홀
-                <div>서울 영등포구 영중로 55 <span class="copy">복사</span></div>
+                <div class="flex map-address-detail">
+                    <div>서울 영등포구 영중로 55</div>
+                    <div class="copy" onclick="copy('address')">
+                        <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                        복사
+                    </div>
+                    <textarea id="address" class="textarea">서울 영등포구 영중로 55</textarea>
+                </div>
             </div>
             <div class="subway-guide">
                 <div class="map-bold-text">
@@ -305,8 +312,8 @@
                     지하철
                 </div>
                 <ul>
-                    <li><span class="subway subway-5">5호선 영등포시장역</span> 4번 출구</li>
-                    <li><span class="subway subway-1">1호선 영등포역</span> 뉴타운 지하상가 4번 출구</li>
+                    <li><span class="map-guide-color" style="background-color: #704D93;">5호선 영등포시장역</span> 4번 출구</li>
+                    <li><span class="map-guide-color" style="background-color: #365abc;">1호선 영등포역</span> 뉴타운 지하상가 4번 출구</li>
                 </ul>
             </div>
             <div class="bus-guide">
@@ -316,32 +323,32 @@
                 </div>
                 <ul class="bus">
                     <li>
-                        <span>간선버스</span>
-                        <span>605, 661, 761번</span>
+                        <span class="map-guide-color" style="background-color: #386de8;">간선버스</span>
+                        <span class="number">605, 661, 761번</span>
                     </li>
                     <li>
-                        <span>지선버스</span>
-                        <span>5616, 5714, 6514번</span>
+                        <span class="map-guide-color" style="background-color: #3cc344;">지선버스</span>
+                        <span class="number">5616, 5714, 6514번</span>
                     </li>
                     <li>
-                        <span>광역버스</span>
-                        <span>9707번</span>
+                        <span class="map-guide-color" style="background-color: #fb5852;">광역버스</span>
+                        <span class="number">9707번</span>
                     </li>
                     <li>
-                        <span>직행버스</span>
-                        <span>1082, 1500, 8000, 9030, G6002번</span>
+                        <span class="map-guide-color" style="background-color: #fb5852;">직행버스</span>
+                        <span class="number">1082, 1500, 8000, 9030, G6002번</span>
                     </li>
                     <li>
-                        <span>좌석버스</span>
-                        <span>700, 830, 870, 871번</span>
+                        <span class="map-guide-color" style="background-color: #8841d2;">좌석버스</span>
+                        <span class="number">700, 830, 870, 871번</span>
                     </li>
                     <li>
-                        <span>일반버스</span>
-                        <span>5, 60, 60-3, 88번</span>
+                        <span class="map-guide-color" style="background-color: #87c700;">일반버스</span>
+                        <span class="number">5, 60, 60-3, 88번</span>
                     </li>
                     <li>
-                        <span>공항버스</span>
-                        <span>6007번</span>
+                        <span class="map-guide-color" style="background-color: #65a6d2;">공항버스</span>
+                        <span class="number">6007번</span>
                     </li>
                 </ul>
             </div>
@@ -359,10 +366,108 @@
     </section>
     <!-- 오시는길 end  -->
 
-
-
-    <br><br><br><br><br><br><br>
+    <!-- 계좌번호 start  -->
+    <section class="account-number-section">
+        <div class="account-number-wrap">
+            <img src="/images/ribon.png">
+            <div class="account-number-title">
+                <div class="title">마음 전하실 곳</div>
+                <div class="subtitle">ＡＣＣＯＵＮＴ</div>
+            </div>
+            <div class="flex"><img width="18px" src="/images/quotes.png"></div>
+            <div class="account-number-text">
+                참석이 어려우신 분들을 위해<br>
+                계좌번호를 기재하였습니다.<br>
+                너그러운 마음으로 양해 부탁드립니다.<br>
+            </div>
+            <div id="tel_ul_3" class="accst02 anibox hd visible animated fadeInUp full-visible">
+                <div class="pack_wrap clearfix">
+                    <div class="pack pack_man">신랑측 계좌번호
+                        <svg class="gallery-arrow-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <ul class="c accordion1 cnt3" style="">
+                        <li class="ft-gowun-bold">
+                            하나은행 270-910297-28307<br>
+                            <span class="name">박동철</span>
+                            <div class="b_1 copy" onclick="copy('account-1')">
+                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                복사
+                            </div>
+                            <textarea id="account-1" class="textarea">270-910297-28307</textarea>
+                        </li>
+                        <li class="ft-gowun-bold">
+                            국민은행 561801-01-449979<br>
+                            <span class="name">전회자</span>
+                            <div class="b_1 copy" onclick="copy('account-2')">
+                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                복사
+                            </div>
+                            <textarea id="account-2" class="textarea">561801-01-449979</textarea>
+                        </li>
+                        <li class="ft-gowun-bold">
+                            하나은행 271-910173-10907<br>
+                            <span class="name">박용준</span>
+                            <div class="b_1 copy" onclick="copy('account-3')">
+                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                복사
+                            </div>
+                            <textarea id="account-3" class="textarea">271-910173-10907</textarea>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pack_wrap clearfix">
+                    <div class="pack pack_man">신부측 계좌번호
+                        <svg class="gallery-arrow-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <ul class="c accordion1 cnt3" style="">
+                        <li class="ft-gowun-bold">
+                            광주은행 672-121-425514<br>
+                            <span class="name">이금열</span>
+                            <div class="b_1 copy" onclick="copy('account-4')">
+                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                복사
+                            </div>
+                            <textarea id="account-4" class="textarea">672-121-425514</textarea>
+                        </li>
+                        <li class="ft-gowun-bold">
+                            하나은행 720-910324-39607<br>
+                            <span class="name">김영순</span>
+                            <div class="b_1 copy" onclick="copy('account-5')">
+                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                복사
+                            </div>
+                            <textarea id="account-5" class="textarea">720-910324-39607</textarea>
+                        </li>
+                        <li class="ft-gowun-bold">
+                            하나은행 332-910458-57807<br>
+                            <span class="name">이우리</span>
+                            <div class="b_1 copy" onclick="copy('account-6')">
+                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                복사
+                            </div>
+                            <textarea id="account-6" class="textarea">332-910458-57807</textarea>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 계좌번호 end  -->
     <!-- Main content end -->
+
+    <!-- alert start -->
+    <section>
+        <div class="alert">
+            <div class="background"></div>
+            <div class="in">
+                <div class="title">복사가 완료되었습니다.</div>
+                <div class="btns">
+                    <button>확인</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- alert end -->
 
     <script src="/javascripts/sakura.min.js"></script>
     <script src="/javascripts/swiper.min.js"></script>
@@ -433,6 +538,34 @@
             slide_html += `<div class="swiper-slide"><img src="/images/gallery/img_${String(i).padStart(2, '0')}.jpg"></div>`;
         }
         document.querySelector("#swiper-list").insertAdjacentHTML("afterbegin",slide_html);
+
+        // 알럿 이벤트 닫기
+        const alertBox = document.querySelector('.alert');
+        const alertBtn = document.querySelector('.btns');
+        alertBtn.addEventListener('click', function (){
+            alertBox.style.display = 'none';
+        });
+
+        // 복사 이벤트
+        function copy(txtId) {
+            const copytxt = document.querySelector(`#${txtId}`).value;
+            const t = document.createElement("textarea");
+            document.body.appendChild(t);
+            t.value = copytxt;
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
+            alertBox.style.display = 'block'
+        }
+
+        // 계좌번호 이벤트
+        const accountWrap = document.querySelector('.pack_wrap');
+        const account = document.querySelectorAll('.pack_man');
+        account.forEach(function (e){
+            e.addEventListener('click', function (){
+                e.parentElement.classList.toggle('active');
+            });
+        });
     </script>
     <script>
         var lat = 37.5213713;
