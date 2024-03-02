@@ -83,6 +83,10 @@ img {
   font-family: 'GangwonEdu_OTFBoldA', sans-serif;
 }
 
+.green-text {
+  color: #298751;
+}
+
 .number {
   font-family: sans-serif !important;
 }
@@ -400,6 +404,7 @@ body:has(.gallery-modal.active) {
   text-align: center;
   font-size: 20px;
   font-weight: 700;
+  color: #298751;
 }
 
 .subtitle {
@@ -455,6 +460,7 @@ body:has(.gallery-modal.active) {
 }
 
 .alert .btns button {
+  color: black;
   background-color: #fff;
   vertical-align: middle;
   margin: 0;
