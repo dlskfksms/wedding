@@ -497,7 +497,6 @@ body:has(.gallery-modal.active) {
   margin: 10px auto;
   border-radius: 6px;
   border: 0;
-  height: 50px;
 }
 
 .pack_wrap.active .pack {
