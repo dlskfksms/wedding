@@ -276,6 +276,9 @@
                 </div>
             </div>
             <div class="swiper">
+                <div id="gallery-load-cover">
+                    <img src="/images/loading.gif" />
+                </div>
                 <div class="swiper-wrapper" id="swiper-list"></div>
                 <!-- navigation buttons -->
                 <div class="swiper-button swiper-button-prev"></div>
@@ -528,6 +531,20 @@
                         nextEl: '.swiper-button-next',
                         prevEl: '.swiper-button-prev',
                     },
+                    on: {
+                        init: function () {
+                            document
+                                .querySelector("#gallery-load-cover")
+                                .classList.remove("hidden");
+                        },
+                        afterInit: function () {
+                            setTimeout(() => {
+                                document
+                                    .querySelector("#gallery-load-cover")
+                                    .classList.add("hidden");
+                            }, 300);
+                        },
+                    },
                 });
 
                 // 갤러리 모달 오픈
@@ -613,6 +630,12 @@
 
         document.querySelector('#map').style.width = '100%';
         document.querySelector('#map').style.height = `${window.innerWidth - 16}px`;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                window.dispatchEvent(new Event("resize"));
+            }, 100);
+        });
     </script>
     <script>
         var letterData = <%- JSON.stringify(letterData) %>;
