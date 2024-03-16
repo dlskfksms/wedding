@@ -482,10 +482,10 @@
                     <span class="letter-modal-close">&times;</span>
                 </div>
                 <div id="letterForm">
-                    <div class="letter-modal-label" style="margin-top: -20px;">보내는 사람</div>
+                    <div class="letter-modal-label" style="margin-top: -20px;">💌 보내는 사람</div>
                     <input type="text" id="letterSender" name="letterSender" maxlength="15">
 
-                    <div class="letter-modal-label">편지 내용</div>
+                    <div class="letter-modal-label">💌 편지 내용</div>
                     <div><textarea id="letterContent" name="letterContent" rows="10" maxlength="500" placeholder="최대 500자까지 작성 가능합니다."></textarea></div>
 
                     <div class="letter-modal-button">
@@ -514,6 +514,11 @@
         </div>
     </section>
     <!-- alert end -->
+
+    <footer>
+        <div class="footer-copyright">Copyright ⓒ 2024. 신부 덩생 이나라. all rights reserved</div>
+        <div>버그 문의 : 카카오아이디 ohranaoh 😉</div>
+    </footer>
 
     <script src="/javascripts/sakura.min.js"></script>
     <script src="/javascripts/swiper.min.js"></script>
@@ -705,10 +710,10 @@
 
         // 전송 버튼
         submitBtn.onclick = function () {
-            const sender = document.getElementById('letterSender').value;
-            const content = document.getElementById('letterContent').value;
+            const sender = document.getElementById('letterSender');
+            const content = document.getElementById('letterContent');
 
-            if (sender.trim() === "" || content.trim() === "") {
+            if (sender.value.trim() === "" || content.value.trim() === "") {
                 alert("모든 입력 칸에 내용을 채워주세요.");
                 return;
             }
@@ -719,8 +724,8 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    sender: sender,
-                    content: content
+                    sender: sender.value,
+                    content: content.value
                 }),
             })
                 .then(response => response.json())
@@ -733,15 +738,18 @@
                     letterContent.innerHTML += `
                         <div class="letter-content">
                             <img src="/images/letter_${randomNum}.png">
-                            <div class="letter-content-sender">${sender}</div>
+                            <div class="letter-content-sender">${sender.value}</div>
                         </div>`;
+
+                    modal.style.removeProperty('overflow');
+                    document.querySelector('body').style.removeProperty('overflow');
+                    sender.value = '';
+                    content.value = '';
                 })
                 .catch((error) => {
-                    console.error('Error:', error);
-                    // TODO: 에러 메시지를 사용자에게 표시하세요.
+                    alert("오류로 인해 저장하지 못했습니다.\n그럴 수 있죠?ㅎㅎ😓\n이 청첩장의 개발자인 신부덩생에게 버그를 알려주세요!!\n연락처는 페이지 하단 참고");
                 });
         }
-
 
         // 모달 밖 클릭 이벤트
         window.onclick = function(event) {

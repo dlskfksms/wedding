@@ -795,3 +795,16 @@ element.style {
   font-size: 11px;
   color: #7d7c7c;
 }
+
+footer {
+  background-color: #ffd18d;
+  font-family: sans-serif;
+  padding: 16px 0 0 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  height: 50px;
+}
+
+.footer-copyright {
+  font-weight: 700;
+}
