@@ -34,7 +34,7 @@ router.post('/letter', function(req, res, next) {
       letterData.letterList.push({
         sender : sender,
         content : content,
-        createAt : new Date()
+        createAt : new Date().toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })
       });
       letterData = JSON.stringify(letterData);
 

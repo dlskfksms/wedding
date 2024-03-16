@@ -457,29 +457,48 @@
     </section>
     <!-- 계좌번호 end  -->
 
-    <!-- 방명록 start -->
+    <!-- 편지 start -->
     <section class="letter-section">
         <div class="letter-wrap">
-            <div class="flex">
+            <div class="letter-header flex flex-column">
                 <img src="/images/letter.png" width="135px">
+                <div class="letter-guide-text">
+                    신랑과 신부에게 편지를 남겨보세요.<br>
+                    편지는 비공개로 보관되며<br>
+                    결혼식날 두 사람에게 전달됩니다.
+                </div>
                 <button id="letterWriteLetterBtn">편지쓰기</button>
+            </div>
+            <div class="letter-content-wrap flex">
+                <!-- 편지지 이미지 동적 세팅 -->
             </div>
         </div>
 
+        <!--  편지 모달 start  -->
         <div id="letterModal" class="letter-modal">
             <div class="letter-modal-content">
-                <span class="letter-modal-close">&times;</span>
-                <form id="letterForm">
-                    <label for="letterSender">보내는이:</label>
-                    <input type="text" id="letterSender" name="letterSender"><br><br>
-                    <label for="letterContent">편지내용:</label>
-                    <textarea id="letterContent" name="letterContent"></textarea><br><br>
-                    <button type="button" id="letterCancelBtn">취소</button>
-                    <button type="submit" id="letterSendBtn">보내기</button>
-                </form>
+                <div>
+                    <div class="flex"><img src="/images/flower.png" width="135px"></div>
+                    <span class="letter-modal-close">&times;</span>
+                </div>
+                <div id="letterForm">
+                    <div class="letter-modal-label" style="margin-top: -20px;">보내는 사람</div>
+                    <input type="text" id="letterSender" name="letterSender" maxlength="15">
+
+                    <div class="letter-modal-label">편지 내용</div>
+                    <div><textarea id="letterContent" name="letterContent" rows="10" maxlength="500" placeholder="최대 500자까지 작성 가능합니다."></textarea></div>
+
+                    <div class="letter-modal-button">
+                        <button type="button" id="letterCancelBtn">취소</button>
+                        <button type="submit" id="letterSendBtn">보내기</button>
+                    </div>
+                    <div class="letter-modal-warn">* 한 번 작성한 편지는 조회나 수정, 삭제 할 수 없습니다.</div>
+                </div>
             </div>
+        </div>
+        <!--  편지 모달 end  -->
     </section>
-    <!-- 방명록 end -->
+    <!-- 편지 end -->
     <!-- Main content end -->
 
     <!-- alert start -->
@@ -568,8 +587,8 @@
         });
 
 
-        var slide_html = ``;
-        for (var i=1;i<22;i++){
+        let slide_html = ``;
+        for (let i=1;i<22;i++){
             // slide_html += `<div class="swiper-slide">
             //             <div class="swiper-zoom-container">
             //                 <img src="/images/gallery/img_${String(i).padStart(2, '0')}.jpg">
@@ -585,6 +604,7 @@
         const alertBtn = document.querySelector('.btns');
         alertBtn.addEventListener('click', function (){
             alertBox.style.display = 'none';
+            document.querySelector('body').style.removeProperty('overflow');
         });
 
         // 복사 이벤트
@@ -597,6 +617,7 @@
             document.execCommand('copy');
             document.body.removeChild(t);
             alertBox.style.display = 'block'
+            document.querySelector('body').style.overflow = 'hidden';
         }
 
         // 계좌번호 이벤트
@@ -617,13 +638,13 @@
         });
     </script>
     <script>
-        var lat = 37.5213713;
-        var lng = 126.9044943;
-        var map = new naver.maps.Map("map", {
+        const lat = 37.5213713;
+        const lng = 126.9044943;
+        const map = new naver.maps.Map("map", {
             center: new naver.maps.LatLng(lat, lng),
             zoom: 16,
         });
-        var marker = new naver.maps.Marker({
+        const marker = new naver.maps.Marker({
             position: new naver.maps.LatLng(lat, lng),
             map: map,
         });
@@ -638,98 +659,95 @@
         });
     </script>
     <script>
-        var letterData = <%- JSON.stringify(letterData) %>;
-
-        // 이제 letterData 객체를 JavaScript에서 사용할 수 있습니다.
+        const letterData = <%- JSON.stringify(letterData) %>;
+        let letterDataLength = letterData.length;
         console.log(letterData);
 
-        // 모달 창을 가져옵니다
-        var modal = document.getElementById("letterModal");
+        const letterWrap = document.querySelector('.letter-wrap');
+        const letterContent = document.querySelector('.letter-content-wrap');
+        for(let data of letterData){
+            const randomNum = Math.floor(Math.random() * 10) + 1;
+            letterContent.innerHTML += `
+                <div class="letter-content">
+                    <img src="/images/letter_${randomNum}.png">
+                    <div class="letter-content-sender">${data}</div>
+                </div>`;
 
-        // 편지쓰기 버튼을 가져옵니다
-        var btn = document.getElementById("letterWriteLetterBtn");
-
-        // 모달 창 안의 취소 버튼을 가져옵니다
-        var cancelBtn = document.getElementById("letterCancelBtn");
-
-        // 모달 창 안의 닫기 버튼 (x)을 가져옵니다
-        var span = document.getElementsByClassName("letter-modal-close")[0];
-
-        // 편지쓰기 버튼을 클릭하면 모달 창을 보여줍니다
-        btn.onclick = function() {
-            modal.style.display = "block";
         }
 
-        // 취소 버튼을 클릭하면 모달 창을 닫습니다
+        const modal = document.getElementById("letterModal");
+        const writeBtn = document.getElementById("letterWriteLetterBtn");
+        const cancelBtn = document.getElementById("letterCancelBtn");
+        const submitBtn = document.getElementById("letterSendBtn");
+        const closeBtn = document.getElementsByClassName("letter-modal-close")[0];
+
+
+        // 작성하기 버튼
+        writeBtn.onclick = function() {
+            modal.style.display = "block";
+            modal.style.overflow = "hidden";
+            document.querySelector('body').style.overflow = 'hidden';
+        }
+
+        // 취소 버튼
         cancelBtn.onclick = function() {
             modal.style.display = "none";
+            modal.style.removeProperty('overflow');
+            document.querySelector('body').style.removeProperty('overflow');
         }
 
-        // 닫기 버튼 (x)을 클릭하면 모달 창을 닫습니다
-        span.onclick = function() {
+        // 닫기 버튼
+        closeBtn.onclick = function() {
             modal.style.display = "none";
+            modal.style.removeProperty('overflow');
+            document.querySelector('body').style.removeProperty('overflow');
         }
 
-        // 모달 창 외부를 클릭하면 모달 창을 닫습니다
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
+        // 전송 버튼
+        submitBtn.onclick = function () {
+            const sender = document.getElementById('letterSender').value;
+            const content = document.getElementById('letterContent').value;
 
-        // 'letterForm' 폼을 제출할 때의 동작을 정의합니다
-        document.getElementById('letterForm').onsubmit = function(event) {
-            event.preventDefault(); // 폼의 기본 제출 동작을 방지합니다
-
-            // 사용자 입력을 가져옵니다
-            var sender = document.getElementById('letterSender').value;
-            var content = document.getElementById('letterContent').value;
-
-            // 입력값을 검증합니다
-            if(sender.trim() === "" || content.trim() === "") {
-                alert("모든 필드를 채워주세요.");
+            if (sender.trim() === "" || content.trim() === "") {
+                alert("모든 입력 칸에 내용을 채워주세요.");
                 return;
             }
 
-            // JSON 객체로 변환합니다
-            var letterData = {
-                sender: sender,
-                content: content
-            };
-
-            // JSON 객체를 문자열로 변환하여 localStorage에 저장합니다
             fetch('/letter', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(letterData),
+                body: JSON.stringify({
+                    sender: sender,
+                    content: content
+                }),
             })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
-                    // 모달 창을 닫습니다
                     modal.style.display = "none";
 
-                    // 'letter-01.png' 이미지와 보내는 이의 이름을 표시합니다
-                    var imageContainer = document.createElement('div');
-                    var newImage = document.createElement('img');
-                    var nameTag = document.createElement('p');
-
-                    newImage.src = '/images/letter_01.png'; // 새 이미지의 경로를 설정해야 합니다
-                    newImage.style.width = '135px'; // 원하는 스타일로 조정할 수 있습니다
-
-                    nameTag.textContent = sender; // 보내는 이의 이름을 텍스트로 추가합니다
-
-                    imageContainer.appendChild(newImage);
-                    imageContainer.appendChild(nameTag);
-
-                    document.body.appendChild(imageContainer);
+                    letterDataLength += 1;
+                    const randomNum = Math.floor(Math.random() * 10) + 1;
+                    letterContent.innerHTML += `
+                        <div class="letter-content">
+                            <img src="/images/letter_${randomNum}.png">
+                            <div class="letter-content-sender">${sender}</div>
+                        </div>`;
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     // TODO: 에러 메시지를 사용자에게 표시하세요.
                 });
+        }
+
+
+        // 모달 밖 클릭 이벤트
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         }
     </script>
 

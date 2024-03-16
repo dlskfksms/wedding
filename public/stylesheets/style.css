@@ -23,7 +23,7 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  height: fit-content;
 }
 
 body {
@@ -450,6 +450,7 @@ body:has(.gallery-modal.active) {
   padding: 0 15px;
   padding-top: 32px;
   padding-bottom: 25px;
+  box-shadow: 4px 7px 13px rgba(0, 0, 0, 0.2);
 }
 
 .alert .title {
@@ -459,28 +460,21 @@ body:has(.gallery-modal.active) {
   margin-bottom: 15px;
 }
 
-.alert .btns button {
-  color: black;
+.alert .btns button, #letterForm button {
+  color: #298751;
   background-color: #fff;
   vertical-align: middle;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 0;
   display: inline-block;
-  width: 110px;
-  height: 48px;
-  line-height: 48px;
   border : 1px solid #298751;
-  font-size: 16px;
   font-weight: 500;
-  border-radius: 12px;
   height: 32px;
   line-height: 32px;
   font-size: 12px;
   width: 80px;
   border-radius: 8px;
-  font-weight: 500;
 }
 
 .textarea {
@@ -660,11 +654,6 @@ element.style {
   letter-spacing: -1px;
 }
 
-.letter-wrap {
-  background-color: blanchedalmond;
-  height: 500px;
-}
-
 #gallery-load-cover {
   background-color: #fff;
   position: absolute;
@@ -683,8 +672,63 @@ element.style {
   opacity: 0;
 }
 
+.letter-wrap {
+  background-color: blanchedalmond;
+  height: fit-content;
+}
+
+.letter-guide-text {
+  text-align: center;
+  font-size: 12px;
+}
+
+#letterWriteLetterBtn {
+  text-align: center;
+  color: #298751;
+  border-radius: 22px;
+  border: 1px solid #298751;
+  background-color: blanchedalmond;
+  width: 30%;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 17px;
+  font-size: 14px;
+}
+
+.letter-content-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 20px;
+  justify-content: center;
+  padding: 10px 10px 70px 10px;
+}
+
+.letter-content {
+  position: relative;
+  margin: 10px;
+}
+
+.letter-content img {
+  width: 100%;
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.2);
+}
+
+.letter-content-sender {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 표시할 최대 줄 수 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .letter-modal {
-  display: none; /* 기본적으로 모달을 숨깁니다. */
+  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -697,23 +741,57 @@ element.style {
 }
 
 .letter-modal-content {
-  background-color: #fefefe;
+  background-color: #ccd3ca;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
   width: 80%;
+  height: 81%;
+  border-radius: 10px;
+  box-shadow: 4px 7px 13px rgba(0, 0, 0, 0.2);
+}
+
+#letterForm {
+  margin-top: 45px;
+}
+
+.letter-modal-label {
+  margin: 14px 0 6px 0;
+}
+
+#letterContent, #letterSender {
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  padding: 7px;
+  box-sizing: border-box;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  font-size: 15px;
+}
+
+.letter-modal-button {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#letterForm button {
+  width: 50%;
+  border: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  background-color: rgba(92,147,83, .7);
+  color: #fff;
 }
 
 .letter-modal-close {
-  color: #aaa;
+  color: #7d7c7c;
   float: right;
   font-size: 28px;
   font-weight: bold;
+  margin-top: -65px;
 }
 
-.letter-modal-close:hover,
-.letter-modal-close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.letter-modal-warn {
+  font-size: 11px;
+  color: #7d7c7c;
 }
