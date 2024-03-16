@@ -457,8 +457,24 @@
     <!-- 방명록 start -->
     <section class="letter-section">
         <div class="letter-wrap">
-            <div class="flex"><img src="/images/letter.png" width="135px"></div>
+            <div class="flex">
+                <img src="/images/letter.png" width="135px">
+                <button id="letterWriteLetterBtn">편지쓰기</button>
+            </div>
         </div>
+
+        <div id="letterModal" class="letter-modal">
+            <div class="letter-modal-content">
+                <span class="letter-modal-close">&times;</span>
+                <form id="letterForm">
+                    <label for="letterSender">보내는이:</label>
+                    <input type="text" id="letterSender" name="letterSender"><br><br>
+                    <label for="letterContent">편지내용:</label>
+                    <textarea id="letterContent" name="letterContent"></textarea><br><br>
+                    <button type="button" id="letterCancelBtn">취소</button>
+                    <button type="submit" id="letterSendBtn">보내기</button>
+                </form>
+            </div>
     </section>
     <!-- 방명록 end -->
     <!-- Main content end -->
@@ -598,5 +614,101 @@
         document.querySelector('#map').style.width = '100%';
         document.querySelector('#map').style.height = `${window.innerWidth - 16}px`;
     </script>
+    <script>
+        var letterData = <%- JSON.stringify(letterData) %>;
+
+        // 이제 letterData 객체를 JavaScript에서 사용할 수 있습니다.
+        console.log(letterData);
+
+        // 모달 창을 가져옵니다
+        var modal = document.getElementById("letterModal");
+
+        // 편지쓰기 버튼을 가져옵니다
+        var btn = document.getElementById("letterWriteLetterBtn");
+
+        // 모달 창 안의 취소 버튼을 가져옵니다
+        var cancelBtn = document.getElementById("letterCancelBtn");
+
+        // 모달 창 안의 닫기 버튼 (x)을 가져옵니다
+        var span = document.getElementsByClassName("letter-modal-close")[0];
+
+        // 편지쓰기 버튼을 클릭하면 모달 창을 보여줍니다
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // 취소 버튼을 클릭하면 모달 창을 닫습니다
+        cancelBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // 닫기 버튼 (x)을 클릭하면 모달 창을 닫습니다
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // 모달 창 외부를 클릭하면 모달 창을 닫습니다
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // 'letterForm' 폼을 제출할 때의 동작을 정의합니다
+        document.getElementById('letterForm').onsubmit = function(event) {
+            event.preventDefault(); // 폼의 기본 제출 동작을 방지합니다
+
+            // 사용자 입력을 가져옵니다
+            var sender = document.getElementById('letterSender').value;
+            var content = document.getElementById('letterContent').value;
+
+            // 입력값을 검증합니다
+            if(sender.trim() === "" || content.trim() === "") {
+                alert("모든 필드를 채워주세요.");
+                return;
+            }
+
+            // JSON 객체로 변환합니다
+            var letterData = {
+                sender: sender,
+                content: content
+            };
+
+            // JSON 객체를 문자열로 변환하여 localStorage에 저장합니다
+            fetch('/letter', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(letterData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // 모달 창을 닫습니다
+                    modal.style.display = "none";
+
+                    // 'letter-01.png' 이미지와 보내는 이의 이름을 표시합니다
+                    var imageContainer = document.createElement('div');
+                    var newImage = document.createElement('img');
+                    var nameTag = document.createElement('p');
+
+                    newImage.src = '/images/letter_01.png'; // 새 이미지의 경로를 설정해야 합니다
+                    newImage.style.width = '135px'; // 원하는 스타일로 조정할 수 있습니다
+
+                    nameTag.textContent = sender; // 보내는 이의 이름을 텍스트로 추가합니다
+
+                    imageContainer.appendChild(newImage);
+                    imageContainer.appendChild(nameTag);
+
+                    document.body.appendChild(imageContainer);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // TODO: 에러 메시지를 사용자에게 표시하세요.
+                });
+        }
+    </script>
+
 </body>
 </html>
