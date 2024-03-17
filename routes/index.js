@@ -29,9 +29,12 @@ router.post('/letter', function(req, res, next) {
       res.status(500).send({ message: 'Internal Server Error' });
     } else {
       try {
-        const { sender, content } = req.body;
+        const { sender, content, imgIndex } = req.body;
         let senderData = JSON.parse(data);
-        senderData.senderList.push(sender);
+        senderData.senderList.push({
+          "sender" : sender,
+          "imgIndex": imgIndex
+        });
 
         const letterFilPath = path.join(__dirname, `letters/letter-${Date.now()}.json`);
         let letterData = {

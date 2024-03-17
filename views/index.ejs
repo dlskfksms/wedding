@@ -475,13 +475,35 @@
         </div>
 
         <!--  편지 모달 start  -->
-        <div id="letterModal" class="letter-modal">
+        <div id="coverSelectionModal" class="letter-modal">
             <div class="letter-modal-content">
-                <div>
-                    <div class="flex"><img src="/images/flower.png" width="135px"></div>
-                    <span class="letter-modal-close">&times;</span>
+                <span class="letter-modal-close">&times;</span>
+                <div class="cover-gallery">
+                    <div style="height: 24px;">편지지 커버를 선택하세요.</div>
+                    <div class="cover-images">
+                        <img src="/images/letter_1.png" data-index="1" class="cover-image">
+                        <img src="/images/letter_2.png" data-index="2" class="cover-image">
+                        <img src="/images/letter_3.png" data-index="3" class="cover-image">
+                        <img src="/images/letter_4.png" data-index="4" class="cover-image">
+                        <img src="/images/letter_5.png" data-index="5" class="cover-image">
+                        <img src="/images/letter_6.png" data-index="6" class="cover-image">
+                        <img src="/images/letter_7.png" data-index="7" class="cover-image">
+                        <img src="/images/letter_8.png" data-index="8" class="cover-image">
+                        <img src="/images/letter_9.png" data-index="9" class="cover-image">
+                        <img src="/images/letter_10.png" data-index="10" class="cover-image">
+                        <img src="/images/letter_11.png" data-index="11" class="cover-image">
+                        <img src="/images/letter_12.png" data-index="12" class="cover-image">
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="letterModal" class="letter-modal" style="display:none;">
+            <div class="letter-modal-content">
+                <span class="letter-modal-close">&times;</span>
+                <div class="flex" style="margin-top: 15px;"><img src="" width="35%" id="selectedCoverImage"></div>
                 <div id="letterForm">
+                    <input type="hidden" id="selectedCoverIndex" name="selectedCoverIndex">
                     <div class="letter-modal-label" style="margin-top: -20px;">💌 보내는 사람</div>
                     <input type="text" id="letterSender" name="letterSender" maxlength="15">
 
@@ -496,6 +518,37 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const coverImages = document.querySelectorAll('.cover-image');
+                coverImages.forEach(function(cover) {
+                    cover.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        const selectedImageSrc = this.src;
+
+                        // 이미지 인덱스를 숨겨진 input에 세팅
+                        document.getElementById('selectedCoverIndex').value = index;
+                        // 선택된 커버 이미지를 표시
+                        document.getElementById('selectedCoverImage').src = selectedImageSrc;
+
+                        // 편지 작성 모달 표시
+                        document.getElementById('letterModal').style.display = 'block';
+                        // 커버 선택 모달 숨김
+                        document.getElementById('coverSelectionModal').style.display = 'none';
+                    });
+                });
+
+                document.querySelector('.letter-modal-close').addEventListener('click', function() {
+                    document.getElementById('letterModal').style.display = 'none';
+                });
+
+                document.getElementById('letterCancelBtn').addEventListener('click', function() {
+                    document.getElementById('letterModal').style.display = 'none';
+                });
+            });
+        </script>
+
         <!--  편지 모달 end  -->
     </section>
     <!-- 편지 end -->
@@ -671,47 +724,70 @@
         const letterWrap = document.querySelector('.letter-wrap');
         const letterContent = document.querySelector('.letter-content-wrap');
         for(let data of letterData){
-            const randomNum = Math.floor(Math.random() * 10) + 1;
             letterContent.innerHTML += `
                 <div class="letter-content">
-                    <img src="/images/letter_${randomNum}.png">
-                    <div class="letter-content-sender">${data}</div>
+                    <img src="/images/letter_${data.imgIndex}.png">
+                    <div class="letter-content-sender">${data.sender}</div>
                 </div>`;
 
         }
 
-        const modal = document.getElementById("letterModal");
+        const coverImages = document.querySelectorAll('.cover-image');
+        const coverImageIndex = document.getElementById("selectedCoverIndex");
+        const letterCoverPickModal = document.getElementById("coverSelectionModal");
+        const letterWriteModal = document.getElementById("letterModal");
         const writeBtn = document.getElementById("letterWriteLetterBtn");
         const cancelBtn = document.getElementById("letterCancelBtn");
         const submitBtn = document.getElementById("letterSendBtn");
-        const closeBtn = document.getElementsByClassName("letter-modal-close")[0];
-
+        const closeBtn = document.querySelectorAll(".letter-modal-close");
+        const body = document.querySelector('body')
 
         // 작성하기 버튼
         writeBtn.onclick = function() {
-            modal.style.display = "block";
-            modal.style.overflow = "hidden";
-            document.querySelector('body').style.overflow = 'hidden';
+            letterCoverPickModal.style.display = "block";
+            letterCoverPickModal.style.overflow = "hidden";
+            letterWriteModal.style.overflow = "hidden";
+            body.style.overflow = 'hidden';
         }
+
+        coverImages.forEach(function(cover) {
+            cover.addEventListener('click', function() {
+                // 이미지 인덱스를 숨겨진 input에 세팅
+                coverImageIndex.value = this.getAttribute('data-index');
+                // 선택된 커버 이미지를 표시
+                document.getElementById('selectedCoverImage').src = this.src;
+
+                // 편지 작성 모달 표시
+                letterWriteModal.style.display = 'block';
+                // 커버 선택 모달 숨김
+                letterCoverPickModal.style.display = 'none';
+            });
+        });
 
         // 취소 버튼
         cancelBtn.onclick = function() {
-            modal.style.display = "none";
-            modal.style.removeProperty('overflow');
-            document.querySelector('body').style.removeProperty('overflow');
+            letterWriteModal.style.display = "none";
+            letterWriteModal.style.removeProperty('overflow');
+            letterCoverPickModal.style.removeProperty('overflow');
+            body.style.removeProperty('overflow');
         }
 
         // 닫기 버튼
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-            modal.style.removeProperty('overflow');
-            document.querySelector('body').style.removeProperty('overflow');
-        }
+        closeBtn.forEach(e => {
+            e.addEventListener('click', function() {
+                letterCoverPickModal.style.display = "none";
+                letterWriteModal.style.display = "none";
+                letterWriteModal.style.removeProperty('overflow');
+                letterCoverPickModal.style.removeProperty('overflow');
+                body.style.removeProperty('overflow');
+            });
+        });
 
         // 전송 버튼
         submitBtn.onclick = function () {
             const sender = document.getElementById('letterSender');
             const content = document.getElementById('letterContent');
+            const imgIndex = coverImageIndex.value;
 
             if (sender.value.trim() === "" || content.value.trim() === "") {
                 alert("모든 입력 칸에 내용을 채워주세요.");
@@ -725,24 +801,25 @@
                 },
                 body: JSON.stringify({
                     sender: sender.value,
-                    content: content.value
+                    content: content.value,
+                    imgIndex: imgIndex
                 }),
             })
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
-                    modal.style.display = "none";
+                    letterWriteModal.style.display = "none";
 
                     letterDataLength += 1;
-                    const randomNum = Math.floor(Math.random() * 10) + 1;
                     letterContent.innerHTML += `
                         <div class="letter-content">
-                            <img src="/images/letter_${randomNum}.png">
+                            <img src="/images/letter_${imgIndex}.png">
                             <div class="letter-content-sender">${sender.value}</div>
                         </div>`;
 
-                    modal.style.removeProperty('overflow');
-                    document.querySelector('body').style.removeProperty('overflow');
+                    letterCoverPickModal.style.removeProperty('overflow');
+                    letterWriteModal.style.removeProperty('overflow');
+                    body.style.removeProperty('overflow');
                     sender.value = '';
                     content.value = '';
                 })
@@ -753,8 +830,12 @@
 
         // 모달 밖 클릭 이벤트
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+            if (event.target == letterCoverPickModal) {
+                letterCoverPickModal.style.display = "none";
+            }
+
+            if (event.target == letterWriteModal) {
+                letterWriteModal.style.display = "none";
             }
         }
     </script>

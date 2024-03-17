@@ -748,6 +748,7 @@ element.style {
   height: 81%;
   border-radius: 10px;
   box-shadow: 4px 7px 13px rgba(0, 0, 0, 0.2);
+  overflow: scroll;
 }
 
 #letterForm {
@@ -785,10 +786,10 @@ element.style {
 
 .letter-modal-close {
   color: #7d7c7c;
-  float: right;
   font-size: 28px;
   font-weight: bold;
-  margin-top: -65px;
+  position: absolute;
+  right: 35px;
 }
 
 .letter-modal-warn {
@@ -807,4 +808,24 @@ footer {
 
 .footer-copyright {
   font-weight: 700;
+}
+
+.cover-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.cover-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.cover-image {
+  width: 100%;
 }
