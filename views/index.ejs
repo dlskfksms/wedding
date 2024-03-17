@@ -805,9 +805,7 @@
                     imgIndex: imgIndex
                 }),
             })
-                .then(response => response.json())
                 .then(data => {
-                    console.log('Success:', data);
                     letterWriteModal.style.display = "none";
 
                     letterDataLength += 1;
@@ -824,6 +822,7 @@
                     content.value = '';
                 })
                 .catch((error) => {
+                    console.log(error);
                     alert("오류로 인해 저장하지 못했습니다.\n그럴 수 있죠?ㅎㅎ😓\n이 청첩장의 개발자인 신부덩생에게 버그를 알려주세요!!\n연락처는 페이지 하단 참고");
                 });
         }
