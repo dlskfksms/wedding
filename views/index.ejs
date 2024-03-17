@@ -22,7 +22,7 @@
 </head>
 <body>
     <!--  BGM start -->
-    <audio loop autoplay>
+    <audio loop autoplay id="bgmAudio">
         <source src="/audio/BGM.mp4">
     </audio>
     <!--  BGM end -->
@@ -30,6 +30,12 @@
     <!-- Main content start -->
     <section class="intro-main-section">
         <!-- 메인 이미지 start -->
+        <div class="autdio-controler">
+            <div class="flex" style="gap: 9px;">
+                <img src="/images/play-button.png" width="30px" id="playBtn">
+                <img src="/images/pause-button.png" width="30px" id="stopBtn">
+            </div>
+        </div>
         <img src="/images/gallery/main.png">
         <!-- 메인 이미지 end -->
 
@@ -43,9 +49,9 @@
             푸릇한 나무 사이로 산뜻한 바람이 산들산들 불어오듯<br>
             서로를 각자의 시선에 담기 시작하였습니다.<br>
             서로를 담다가 우리는 닮아있게 되었고<br>
-            여전히 닮아가고 있습니다.<br>
+            여전히 닮아가고 있습니다.<br><br>
             항상 밝고 열정적으로 서로를 담고 닮아가겠습니다.<br>
-            새로운 시작을 담을 자리에 맑은 웃음으로 채워주세요.<br>
+            새로운 시작을 담을 자리에 맑은 웃음으로 채워주세요.<br><br>
             소중한 분들과 함께라면<br>
             저희에겐 더없는 행복이 될 것입니다.<br>
             <div class="flex" style="margin-top: 31px;">
@@ -377,7 +383,6 @@
                 <div class="title">마음 전하실 곳</div>
                 <div class="subtitle">ＡＣＣＯＵＮＴ</div>
             </div>
-            <div class="flex"><img width="18px" src="/images/quotes.png"></div>
             <div class="account-number-text">
                 참석이 어려우신 분들을 위해<br>
                 계좌번호를 기재하였습니다.<br>
@@ -583,6 +588,18 @@
                 gradientColorEnd: "rgb(255,255,255)",
                 gradientColorDegree: 120,
             }]
+        });
+
+        const audio = document.getElementById('bgmAudio');
+        const playButton = document.getElementById('playBtn');
+        const stopButton = document.getElementById('stopBtn');
+
+        playButton.addEventListener('click', function() {
+            audio.play();
+        });
+
+        stopButton.addEventListener('click', function() {
+            audio.pause();
         });
 
         // 연락하기 클릭 이벤트

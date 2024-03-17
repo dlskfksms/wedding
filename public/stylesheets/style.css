@@ -56,6 +56,12 @@ img {
   flex-direction: column;
 }
 
+.autdio-controler {
+  position: absolute;
+  right: 13px;
+  top: 13px;
+}
+
 .name-section {
   margin: 87px 0 20px 0;
 }
