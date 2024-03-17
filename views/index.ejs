@@ -794,7 +794,7 @@
                 return;
             }
 
-            fetch('/letter', {
+            fetch('http://localhost:2000/letter', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -805,26 +805,26 @@
                     imgIndex: imgIndex
                 }),
             })
-                .then(data => {
-                    letterWriteModal.style.display = "none";
+            .then(data => {
+                letterWriteModal.style.display = "none";
 
-                    letterDataLength += 1;
-                    letterContent.innerHTML += `
-                        <div class="letter-content">
-                            <img src="/images/letter_${imgIndex}.png">
-                            <div class="letter-content-sender">${sender.value}</div>
-                        </div>`;
+                letterDataLength += 1;
+                letterContent.innerHTML += `
+                    <div class="letter-content">
+                        <img src="/images/letter_${imgIndex}.png">
+                        <div class="letter-content-sender">${sender.value}</div>
+                    </div>`;
 
-                    letterCoverPickModal.style.removeProperty('overflow');
-                    letterWriteModal.style.removeProperty('overflow');
-                    body.style.removeProperty('overflow');
-                    sender.value = '';
-                    content.value = '';
-                })
-                .catch((error) => {
-                    console.log(error);
-                    alert("오류로 인해 저장하지 못했습니다.\n그럴 수 있죠?ㅎㅎ😓\n이 청첩장의 개발자인 신부덩생에게 버그를 알려주세요!!\n연락처는 페이지 하단 참고");
-                });
+                letterCoverPickModal.style.removeProperty('overflow');
+                letterWriteModal.style.removeProperty('overflow');
+                body.style.removeProperty('overflow');
+                sender.value = '';
+                content.value = '';
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("오류로 인해 저장하지 못했습니다.\n그럴 수 있죠?ㅎㅎ😓\n이 청첩장의 개발자인 신부덩생에게 버그를 알려주세요!!\n연락처는 페이지 하단 참고");
+            });
         }
 
         // 모달 밖 클릭 이벤트
