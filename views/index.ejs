@@ -14,6 +14,7 @@
     <!-- css -->
     <link rel="stylesheet" href="/stylesheets/sakura.min.css">
     <link rel="stylesheet" href="/stylesheets/swiper.min.css">
+    <link rel="stylesheet" href="/stylesheets/aos.min.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
 
     <!-- map api -->
@@ -40,7 +41,7 @@
         <!-- 메인 이미지 end -->
 
         <!-- 소개글 start  -->
-        <div class="intro-text-section">
+        <div class="intro-text-section" data-aos="fade-up">
             <div class="flex" style="margin-bottom: 40px;">
                 <img src="/images/ring.png" style="width:56%; height: 100%;">
             </div>
@@ -62,7 +63,7 @@
     <!-- 소개글 end  -->
 
     <!-- 이름 소개 start  -->
-    <section class="intro-name-section">
+    <section class="intro-name-section"  data-aos="fade-up">
         <img src="/images/gallery/introduce.gif">
         <div class="flex flex-column name-section">
             <span class="name-text">박동철 · 전회자 장남 박용준</span>
@@ -232,13 +233,13 @@
     <!-- 이름 소개 end  -->
 
     <!-- 캘린더 start  -->
-    <section class="calendar-section">
+    <section class="calendar-section" data-aos="fade-up">
         <img src="/images/calendar.png">
     </section>
     <!-- 캘린더 end  -->
     
     <!-- 갤러리 start  -->
-    <section class="gallery-section">
+    <section class="gallery-section" data-aos="fade-up">
         <div class="gallery-title">
             <div class="title">ＧＡＬＬＥＲＹ</div>
             <div class="subtitle">갤러리</div>
@@ -295,7 +296,7 @@
     <!-- 갤러리 end  -->
 
     <!-- 오시는길 start  -->
-    <section class="map-section">
+    <section class="map-section" data-aos="fade-up">
         <div class="map-title">
             <div class="title">ＬＯＣＡＴＩＯＮ</div>
             <div class="subtitle spacing">오시는 길</div>
@@ -375,186 +376,188 @@
     </section>
     <!-- 오시는길 end  -->
 
-    <!-- 계좌번호 start  -->
-    <section class="account-number-section">
-        <div class="account-number-wrap spacing">
-            <img src="/images/ribon.png">
-            <div class="account-number-title">
-                <div class="title">마음 전하실 곳</div>
-                <div class="subtitle">ＡＣＣＯＵＮＴ</div>
-            </div>
-            <div class="account-number-text">
-                참석이 어려우신 분들을 위해<br>
-                계좌번호를 기재하였습니다.<br>
-                너그러운 마음으로 양해 부탁드립니다.<br>
-            </div>
-            <div id="tel_ul_3" class="accst02 anibox hd visible animated fadeInUp full-visible">
-                <div class="pack_wrap clearfix">
-                    <div class="pack pack_man">신랑측 계좌번호
-                        <svg class="gallery-arrow-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+    <section style="background-color: blanchedalmond;">
+        <!-- 계좌번호 start  -->
+        <section class="account-number-section" data-aos="fade-up">
+            <div class="account-number-wrap spacing">
+                <img src="/images/ribon.png">
+                <div class="account-number-title">
+                    <div class="title">마음 전하실 곳</div>
+                    <div class="subtitle">ＡＣＣＯＵＮＴ</div>
+                </div>
+                <div class="account-number-text">
+                    참석이 어려우신 분들을 위해<br>
+                    계좌번호를 기재하였습니다.<br>
+                    너그러운 마음으로 양해 부탁드립니다.<br>
+                </div>
+                <div id="tel_ul_3" class="accst02 anibox hd visible animated fadeInUp full-visible">
+                    <div class="pack_wrap clearfix">
+                        <div class="pack pack_man">신랑측 계좌번호
+                            <svg class="gallery-arrow-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <ul class="c accordion1 cnt3" style="">
+                            <li class="ft-gowun-bold">
+                                하나은행 270-910297-28307<br>
+                                <span class="name">박동철</span>
+                                <div class="b_1 copy" onclick="copy('account-1')">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                    복사
+                                </div>
+                                <textarea id="account-1" class="textarea">270-910297-28307</textarea>
+                            </li>
+                            <li class="ft-gowun-bold">
+                                국민은행 561801-01-449979<br>
+                                <span class="name">전회자</span>
+                                <div class="b_1 copy" onclick="copy('account-2')">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                    복사
+                                </div>
+                                <textarea id="account-2" class="textarea">561801-01-449979</textarea>
+                            </li>
+                            <li class="ft-gowun-bold">
+                                하나은행 271-910173-10907<br>
+                                <span class="name">박용준</span>
+                                <div class="b_1 copy" onclick="copy('account-3')">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                    복사
+                                </div>
+                                <textarea id="account-3" class="textarea">271-910173-10907</textarea>
+                            </li>
+                        </ul>
                     </div>
-                    <ul class="c accordion1 cnt3" style="">
-                        <li class="ft-gowun-bold">
-                            하나은행 270-910297-28307<br>
-                            <span class="name">박동철</span>
-                            <div class="b_1 copy" onclick="copy('account-1')">
-                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
-                                복사
-                            </div>
-                            <textarea id="account-1" class="textarea">270-910297-28307</textarea>
-                        </li>
-                        <li class="ft-gowun-bold">
-                            국민은행 561801-01-449979<br>
-                            <span class="name">전회자</span>
-                            <div class="b_1 copy" onclick="copy('account-2')">
-                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
-                                복사
-                            </div>
-                            <textarea id="account-2" class="textarea">561801-01-449979</textarea>
-                        </li>
-                        <li class="ft-gowun-bold">
-                            하나은행 271-910173-10907<br>
-                            <span class="name">박용준</span>
-                            <div class="b_1 copy" onclick="copy('account-3')">
-                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
-                                복사
-                            </div>
-                            <textarea id="account-3" class="textarea">271-910173-10907</textarea>
-                        </li>
-                    </ul>
-                </div>
-                <div class="pack_wrap clearfix">
-                    <div class="pack pack_man">신부측 계좌번호
-                        <svg class="gallery-arrow-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                    <ul class="c accordion1 cnt3" style="">
-                        <li class="ft-gowun-bold">
-                            광주은행 672-121-425514<br>
-                            <span class="name">이금열</span>
-                            <div class="b_1 copy" onclick="copy('account-4')">
-                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
-                                복사
-                            </div>
-                            <textarea id="account-4" class="textarea">672-121-425514</textarea>
-                        </li>
-                        <li class="ft-gowun-bold">
-                            하나은행 720-910324-39607<br>
-                            <span class="name">김영순</span>
-                            <div class="b_1 copy" onclick="copy('account-5')">
-                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
-                                복사
-                            </div>
-                            <textarea id="account-5" class="textarea">720-910324-39607</textarea>
-                        </li>
-                        <li class="ft-gowun-bold">
-                            하나은행 332-910458-57807<br>
-                            <span class="name">이우리</span>
-                            <div class="b_1 copy" onclick="copy('account-6')">
-                                <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
-                                복사
-                            </div>
-                            <textarea id="account-6" class="textarea">332-910458-57807</textarea>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- 계좌번호 end  -->
-
-    <!-- 편지 start -->
-    <section class="letter-section">
-        <div class="letter-wrap">
-            <div class="letter-header flex flex-column">
-                <img src="/images/letter.png" width="135px">
-                <div class="letter-guide-text">
-                    신랑과 신부에게 편지를 남겨보세요.<br>
-                    편지는 비공개로 보관되며<br>
-                    결혼식날 두 사람에게 전달됩니다.
-                </div>
-                <button id="letterWriteLetterBtn">편지쓰기</button>
-            </div>
-            <div class="letter-content-wrap flex">
-                <!-- 편지지 이미지 동적 세팅 -->
-            </div>
-        </div>
-
-        <!--  편지 모달 start  -->
-        <div id="coverSelectionModal" class="letter-modal">
-            <div class="letter-modal-content">
-                <span class="letter-modal-close">&times;</span>
-                <div class="cover-gallery">
-                    <div style="height: 24px;">편지지 커버를 선택하세요.</div>
-                    <div class="cover-images">
-                        <img src="/images/letter_1.png" data-index="1" class="cover-image">
-                        <img src="/images/letter_2.png" data-index="2" class="cover-image">
-                        <img src="/images/letter_3.png" data-index="3" class="cover-image">
-                        <img src="/images/letter_4.png" data-index="4" class="cover-image">
-                        <img src="/images/letter_5.png" data-index="5" class="cover-image">
-                        <img src="/images/letter_6.png" data-index="6" class="cover-image">
-                        <img src="/images/letter_7.png" data-index="7" class="cover-image">
-                        <img src="/images/letter_8.png" data-index="8" class="cover-image">
-                        <img src="/images/letter_9.png" data-index="9" class="cover-image">
-                        <img src="/images/letter_10.png" data-index="10" class="cover-image">
-                        <img src="/images/letter_11.png" data-index="11" class="cover-image">
-                        <img src="/images/letter_12.png" data-index="12" class="cover-image">
+                    <div class="pack_wrap clearfix">
+                        <div class="pack pack_man">신부측 계좌번호
+                            <svg class="gallery-arrow-icon" xmlns="http://www.w3.org/2000/svg" height="20" width="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                        <ul class="c accordion1 cnt3" style="">
+                            <li class="ft-gowun-bold">
+                                광주은행 672-121-425514<br>
+                                <span class="name">이금열</span>
+                                <div class="b_1 copy" onclick="copy('account-4')">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                    복사
+                                </div>
+                                <textarea id="account-4" class="textarea">672-121-425514</textarea>
+                            </li>
+                            <li class="ft-gowun-bold">
+                                하나은행 720-910324-39607<br>
+                                <span class="name">김영순</span>
+                                <div class="b_1 copy" onclick="copy('account-5')">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                    복사
+                                </div>
+                                <textarea id="account-5" class="textarea">720-910324-39607</textarea>
+                            </li>
+                            <li class="ft-gowun-bold">
+                                하나은행 332-910458-57807<br>
+                                <span class="name">이우리</span>
+                                <div class="b_1 copy" onclick="copy('account-6')">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0.48 0.48 23.04 23.04" fill="#222F3D" class="ov-icon" style="font-size: 2.88em;"><path fill="none" d="M0 0h24v24H0z"></path><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"></path></svg>
+                                    복사
+                                </div>
+                                <textarea id="account-6" class="textarea">332-910458-57807</textarea>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <!-- 계좌번호 end  -->
 
-        <div id="letterModal" class="letter-modal" style="display:none;">
-            <div class="letter-modal-content">
-                <span class="letter-modal-close">&times;</span>
-                <div class="flex" style="margin-top: 15px;"><img src="" width="35%" id="selectedCoverImage"></div>
-                <div id="letterForm">
-                    <input type="hidden" id="selectedCoverIndex" name="selectedCoverIndex">
-                    <div class="letter-modal-label" style="margin-top: -20px;">💌 보내는 사람</div>
-                    <input type="text" id="letterSender" name="letterSender" maxlength="15">
-
-                    <div class="letter-modal-label">💌 편지 내용</div>
-                    <div><textarea id="letterContent" name="letterContent" rows="10" maxlength="500" placeholder="최대 500자까지 작성 가능합니다."></textarea></div>
-
-                    <div class="letter-modal-button">
-                        <button type="button" id="letterCancelBtn">취소</button>
-                        <button type="submit" id="letterSendBtn">보내기</button>
+        <!-- 편지 start -->
+        <section class="letter-section" data-aos="fade-up">
+            <div class="letter-wrap">
+                <div class="letter-header flex flex-column">
+                    <img src="/images/letter.png" width="135px">
+                    <div class="letter-guide-text">
+                        신랑과 신부에게 편지를 남겨보세요.<br>
+                        편지는 비공개로 보관되며<br>
+                        결혼식날 두 사람에게 전달됩니다.
                     </div>
-                    <div class="letter-modal-warn">* 한 번 작성한 편지는 조회나 수정, 삭제 할 수 없습니다.</div>
+                    <button id="letterWriteLetterBtn">편지쓰기</button>
+                </div>
+                <div class="letter-content-wrap flex">
+                    <!-- 편지지 이미지 동적 세팅 -->
                 </div>
             </div>
-        </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const coverImages = document.querySelectorAll('.cover-image');
-                coverImages.forEach(function(cover) {
-                    cover.addEventListener('click', function() {
-                        const index = this.getAttribute('data-index');
-                        const selectedImageSrc = this.src;
+            <!--  편지 모달 start  -->
+            <div id="coverSelectionModal" class="letter-modal">
+                <div class="letter-modal-content">
+                    <span class="letter-modal-close">&times;</span>
+                    <div class="cover-gallery">
+                        <div style="height: 24px;">편지지 커버를 선택하세요.</div>
+                        <div class="cover-images">
+                            <img src="/images/letter_1.png" data-index="1" class="cover-image">
+                            <img src="/images/letter_2.png" data-index="2" class="cover-image">
+                            <img src="/images/letter_3.png" data-index="3" class="cover-image">
+                            <img src="/images/letter_4.png" data-index="4" class="cover-image">
+                            <img src="/images/letter_5.png" data-index="5" class="cover-image">
+                            <img src="/images/letter_6.png" data-index="6" class="cover-image">
+                            <img src="/images/letter_7.png" data-index="7" class="cover-image">
+                            <img src="/images/letter_8.png" data-index="8" class="cover-image">
+                            <img src="/images/letter_9.png" data-index="9" class="cover-image">
+                            <img src="/images/letter_10.png" data-index="10" class="cover-image">
+                            <img src="/images/letter_11.png" data-index="11" class="cover-image">
+                            <img src="/images/letter_12.png" data-index="12" class="cover-image">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                        // 이미지 인덱스를 숨겨진 input에 세팅
-                        document.getElementById('selectedCoverIndex').value = index;
-                        // 선택된 커버 이미지를 표시
-                        document.getElementById('selectedCoverImage').src = selectedImageSrc;
+            <div id="letterModal" class="letter-modal" style="display:none;">
+                <div class="letter-modal-content">
+                    <span class="letter-modal-close">&times;</span>
+                    <div class="flex" style="margin-top: 15px;"><img src="" width="35%" id="selectedCoverImage"></div>
+                    <div id="letterForm">
+                        <input type="hidden" id="selectedCoverIndex" name="selectedCoverIndex">
+                        <div class="letter-modal-label" style="margin-top: -20px;">💌 보내는 사람</div>
+                        <input type="text" id="letterSender" name="letterSender" maxlength="15">
 
-                        // 편지 작성 모달 표시
-                        document.getElementById('letterModal').style.display = 'block';
-                        // 커버 선택 모달 숨김
-                        document.getElementById('coverSelectionModal').style.display = 'none';
+                        <div class="letter-modal-label">💌 편지 내용</div>
+                        <div><textarea id="letterContent" name="letterContent" rows="10" maxlength="500" placeholder="최대 500자까지 작성 가능합니다."></textarea></div>
+
+                        <div class="letter-modal-button">
+                            <button type="button" id="letterCancelBtn">취소</button>
+                            <button type="submit" id="letterSendBtn">보내기</button>
+                        </div>
+                        <div class="letter-modal-warn">* 한 번 작성한 편지는 조회나 수정, 삭제 할 수 없습니다.</div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const coverImages = document.querySelectorAll('.cover-image');
+                    coverImages.forEach(function(cover) {
+                        cover.addEventListener('click', function() {
+                            const index = this.getAttribute('data-index');
+                            const selectedImageSrc = this.src;
+
+                            // 이미지 인덱스를 숨겨진 input에 세팅
+                            document.getElementById('selectedCoverIndex').value = index;
+                            // 선택된 커버 이미지를 표시
+                            document.getElementById('selectedCoverImage').src = selectedImageSrc;
+
+                            // 편지 작성 모달 표시
+                            document.getElementById('letterModal').style.display = 'block';
+                            // 커버 선택 모달 숨김
+                            document.getElementById('coverSelectionModal').style.display = 'none';
+                        });
+                    });
+
+                    document.querySelector('.letter-modal-close').addEventListener('click', function() {
+                        document.getElementById('letterModal').style.display = 'none';
+                    });
+
+                    document.getElementById('letterCancelBtn').addEventListener('click', function() {
+                        document.getElementById('letterModal').style.display = 'none';
                     });
                 });
+            </script>
 
-                document.querySelector('.letter-modal-close').addEventListener('click', function() {
-                    document.getElementById('letterModal').style.display = 'none';
-                });
-
-                document.getElementById('letterCancelBtn').addEventListener('click', function() {
-                    document.getElementById('letterModal').style.display = 'none';
-                });
-            });
-        </script>
-
-        <!--  편지 모달 end  -->
+            <!--  편지 모달 end  -->
+        </section>
     </section>
     <!-- 편지 end -->
     <!-- Main content end -->
@@ -580,6 +583,7 @@
 
     <script src="/javascripts/sakura.min.js"></script>
     <script src="/javascripts/swiper.min.js"></script>
+    <script src="/javascripts/aos.min.js"></script>
     <script>
         // sakura 꽃잎 이벤트
         const sakura = new Sakura('body', {
@@ -589,6 +593,8 @@
                 gradientColorDegree: 120,
             }]
         });
+
+        AOS.init({duration: 1200,})
 
         const audio = document.getElementById('bgmAudio');
         const playButton = document.getElementById('playBtn');
