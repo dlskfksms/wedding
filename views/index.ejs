@@ -794,7 +794,7 @@
                 return;
             }
 
-            fetch('/letter', {
+            await fetch('/letter', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
