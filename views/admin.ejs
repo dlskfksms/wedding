@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+  <title>ADMIN</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: fit-content;
+      overflow-x: hidden;
+      overflow-y: scroll;
+    }
+    #letter-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .letter-content {
+      display: flex;
+      flex-direction: row;
+      border-bottom: 1px solid black;
+    }
+    .letter-content-sender {
+      flex: 1;
+      background: beige;
+    }
+    .letter-content-content {
+      flex: 8;
+      padding-left: 20px;
+    }
+    .letter-content-datetime {
+      flex: 1;
+    }
+    .all-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <% if(typeof letterData == 'undefined'){ %>
+  <div>NOPE!</div>
+  <% } else { %>
+  <div id="letter-list">
+    <div class="letter-content">
+      <div class="letter-content-sender all-center">보낸이</div>
+      <div class="letter-content-content all-center">내용</div>
+      <div class="letter-content-datetime all-center">작성시간</div>
+    </div>
+  </div>
+  <% } %>
+
+  <script>
+    var letterDataObj = <%- JSON.stringify(letterData) %>;
+    var letterData = JSON.parse(letterDataObj)
+    let letterDataLength = letterData.length;
+    console.log(letterData);
+
+    const letterContent = document.querySelector('#letter-list');
+    var htmlll = '';
+    for(let data of letterData){
+        htmlll += `
+            <div class="letter-content">
+                <div class="letter-content-sender all-center">${data.sender}</div>
+                <div class="letter-content-content">${data.content.replace(/\n/g, "<br />")}</div>
+                <div class="letter-content-datetime all-center">${data.createAt}</div>
+            </div>`;
+    }
+    letterContent.insertAdjacentHTML('beforeend' ,htmlll);
+  </script>
+</body>
