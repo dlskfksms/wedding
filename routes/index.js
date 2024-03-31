@@ -8,13 +8,13 @@ router.get("/", function (req, res, next) {
   const filepath = path.join(__dirname, "letters/sender-data.json");
   fs.readFile(filepath, (err, data) => {
     if (err) {
-      res.render("index");
+      res.render("index", { letterData: "" });
     } else {
       try {
         data = JSON.parse(data).senderList;
         res.render("index", { letterData: data });
       } catch (e) {
-        res.render("index");
+        res.render("index", { letterData: "" });
       }
     }
   });
@@ -75,21 +75,25 @@ router.post("/letter", function (req, res, next) {
 router.get("/admin/:pw", async function (req, res, next) {
   let pw = req.params.pw;
   if (pw === "rana0723") {
-    var dataArr = [];
-    const filepath = path.join(__dirname, "letters");
-    var files = fs.readdirSync(filepath);
-    for (const file of files) {
-      if (file.split("-")[0] == "letter") {
-        const filepath2 = path.join(filepath, file);
-        var data = fs.readFileSync(filepath2);
-        data = JSON.parse(data);
-        dataArr.push(data);
+    try {
+      var dataArr = [];
+      const filepath = path.join(__dirname, "letters");
+      var files = fs.readdirSync(filepath);
+      for (const file of files) {
+        if (file.split("-")[0] == "letter") {
+          const filepath2 = path.join(filepath, file);
+          var data = fs.readFileSync(filepath2);
+          data = JSON.parse(data);
+          dataArr.push(data);
+        }
       }
+      var jsonString = JSON.stringify(dataArr);
+      res.render("admin", { letterData: jsonString });
+    } catch (error) {
+      res.render("index", { letterData: "" });
     }
-    var jsonString = JSON.stringify(dataArr);
-    res.render("admin", { letterData: jsonString });
   } else {
-    res.render("admin");
+    res.render("index", { letterData: "" });
   }
 });
 
