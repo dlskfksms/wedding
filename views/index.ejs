@@ -21,7 +21,7 @@
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hxqjwrf42h"></script>
     <title>박용준 & 이우리 결혼식 청첩장</title>
 </head>
-<body class="no-scroll">
+<body style="overflow: hidden;">
     <!--  BGM start -->
     <audio loop autoplay id="bgmAudio">
         <source src="/audio/BGM.mp4">
@@ -586,7 +586,7 @@
                     <div style="padding: 10px 0 0 10px;">
                         안녕하세요.<br>
                         저희의 결혼식 날이 다가왔습니다.<br>
-                        특별한 순간을 함께 축하해주기 위해<br>
+                        특별한 순간을 함께 축하해주시기 위해<br>
                         먼 길을 방문해주셔서 깊이 감사합니다.<br>
                         <br>
                         조금이라도 편안히 오실 수 있도록<br>
@@ -617,6 +617,7 @@
                         • 만차시 현장 주차요원 안내에 따라<br>
                         &nbsp;&nbsp;외부 주차장 이용하고 셔틀로 왕복<br>
                         &nbsp;&nbsp;(2시간 무료, 추가 10분당 1000원)<br>
+                        • <span class="shuttle_btn">외부 주차장 셔틀 승하차 위치 보기</span>
                         <hr>
                         <div class="popup-subtitle" style="margin-top: 22px;">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M160-340v-380q0-53 27.5-84.5t72.5-48q45-16.5 102.5-22T480-880q66 0 124.5 5.5t102 22q43.5 16.5 68.5 48t25 84.5v380q0 59-40.5 99.5T660-200l60 60v20h-80l-80-80H400l-80 80h-80v-20l60-60q-59 0-99.5-40.5T160-340Zm320-460q-106 0-155 12.5T258-760h448q-15-17-64.5-28.5T480-800ZM240-560h200v-120H240v120Zm420 80H240h480-60Zm-140-80h200v-120H520v120ZM340-320q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm280 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm-320 40h360q26 0 43-17t17-43v-140H240v140q0 26 17 43t43 17Zm180-480h226-448 222Z"></path></svg>
@@ -633,6 +634,13 @@
                         <button>확인</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="shuttleImgModal" class="shuttle_img_modal">
+            <div class="shuttle_img_modal_wrapper">
+                <span class="shuttle_img_close">&times;</span>
+                <img class="shuttle_img" id="shuttleImg" src="/images/shuttle_map.jpg">
             </div>
         </div>
     </section>
@@ -711,6 +719,7 @@
 
                 // 갤러리 모달 오픈
                 galleryModal.classList.add('active');
+                document.querySelector('body').style.overflow = 'hidden';
             });
         });
 
@@ -727,6 +736,7 @@
             if (swiper !== undefined) {
                 swiper.destroy(true, true);
             }
+            document.querySelector('body').style.removeProperty('overflow');
         });
 
 
@@ -787,6 +797,9 @@
         const content2 = document.querySelector('.content_2');
         const popupNextBtn = document.querySelector('.content_1 .next');
         const popupOkBtn = document.querySelector('.content_2 .confirm');
+        const shuttleImgModal = document.querySelector('.shuttle_img_modal');
+        const shuttleOpenBtn = document.querySelector('.shuttle_btn');
+        const shuttleCloseBtn = document.querySelector('.shuttle_img_close');
 
         popupNextBtn.addEventListener('click', function(){
             content1.style.display = 'none';
@@ -796,7 +809,17 @@
 
         popupOkBtn.addEventListener('click', function(){
             popup.style.display = 'none';
-            document.body.classList.remove('no-scroll');
+            document.querySelector('body').style.removeProperty('overflow');
+        });
+
+        shuttleOpenBtn.addEventListener('click', function(){
+            popup.style.display = 'none';
+            shuttleImgModal.style.display = 'flex';
+        });
+
+        shuttleCloseBtn.addEventListener('click', function(){
+            popup.style.display = 'block';
+            shuttleImgModal.style.display = 'none';
         });
     </script>
     <script>
