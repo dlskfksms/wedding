@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="/stylesheets/sakura.min.css">
     <link rel="stylesheet" href="/stylesheets/swiper.min.css">
     <link rel="stylesheet" href="/stylesheets/aos.min.css" />
-    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style2.css" />
 
     <!-- map api -->
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hxqjwrf42h"></script>
     <title>박용준 & 이우리 결혼식 청첩장</title>
 </head>
-<body style="overflow: hidden;">
+<body >
     <!--  BGM start -->
     <audio loop autoplay id="bgmAudio">
         <source src="/audio/BGM.mp4">
@@ -476,19 +476,19 @@
                     </div>
                     <button id="letterWriteLetterBtn">편지쓰기</button>
                 </div>
-                <div class="letter-content-wrap flex">
+                <div class="">
                     <!-- 편지지 이미지 동적 세팅 -->
                     <div class="all_letter letter-group">
-                        <div class="all_letter_title letterTitle">행복 가득한 용준이와 우리에게 온 편지</div>
-                        <div class="all_letter_content letter-group-content"></div>
+                        <div class="all_letter_title letter-group-title">행복 가득한 용준이와 우리에게 온 편지</div>
+                        <div class="all_letter_content letter-content-wrap flex"></div>
                     </div>
                     <div class="yong_letter letter-group">
-                        <div class="yong_letter_title letterTitle">든든한 용준이에게 온 편지</div>
-                        <div class="yong_letter_content letter-group-content"></div>
+                        <div class="yong_letter_title letter-group-title">든든한 용준이에게 온 편지</div>
+                        <div class="yong_letter_content letter-content-wrap flex"></div>
                     </div>
                     <div class="wool_letter letter-group">
-                        <div class="wool_letter_title letterTitle">사랑스러운 우리에게 온 편지</div>
-                        <div class="wool_letter_content letter-group-content"></div>
+                        <div class="wool_letter_title letter-group-title">사랑스러운 우리에게 온 편지</div>
+                        <div class="wool_letter_content letter-content-wrap flex"></div>
                     </div>
                 </div>
             </div>
@@ -545,36 +545,24 @@
                 </div>
             </div>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const coverImages = document.querySelectorAll('.cover-image');
-                    coverImages.forEach(function(cover) {
-                        cover.addEventListener('click', function() {
-                            const index = this.getAttribute('data-index');
-                            const selectedImageSrc = this.src;
-
-                            // 이미지 인덱스를 숨겨진 input에 세팅
-                            document.getElementById('selectedCoverIndex').value = index;
-                            // 선택된 커버 이미지를 표시
-                            document.getElementById('selectedCoverImage').src = selectedImageSrc;
-
-                            // 편지 작성 모달 표시
-                            document.getElementById('letterModal').style.display = 'block';
-                            // 커버 선택 모달 숨김
-                            document.getElementById('coverSelectionModal').style.display = 'none';
-                        });
-                    });
-
-                    document.querySelector('.letter-modal-close').addEventListener('click', function() {
-                        document.getElementById('letterModal').style.display = 'none';
-                    });
-
-                    document.getElementById('letterCancelBtn').addEventListener('click', function() {
-                        document.getElementById('letterModal').style.display = 'none';
-                    });
-                });
-            </script>
-
+            <div id="letterDetailModal" class="letter-modal" style="display:none;">
+                <div class="letter-modal-content">
+                    <span class="letterDetailCancelBtn">&times;</span>
+                    <div class="flex" style="margin-top: 15px;"><img src="" width="35%" id="selectedCoverImage2"></div>
+                    <div id="letterDetailForm">
+                        <input type="hidden" id="selectedCoverIndex2" name="selectedCoverIndex2">
+                        <div class="letter-modal-label" style="margin-top: -20px;">
+                            💌 보낸 사람 : <span class="letter-modal-detail-sender"></span>
+                        </div>
+                        <div class="letter-modal-label">💌 편지 내용</div>
+                        <div class="letter-modal-detail-content"></div>
+                        <div class="letter-modal-detail-createAt"></div>
+                        <div class="letter-modal-button">
+                            <button type="button" class="letterDetailCancelBtn">닫기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--  편지 모달 end  -->
         </section>
     </section>
@@ -597,7 +585,7 @@
 
     <!-- 안내 팝업 start -->
     <section>
-        <div class="popup">
+        <div class="popup" style="display: none;">
             <div class="background"></div>
             <div class="in">
                 <div class="content_1">
@@ -670,6 +658,35 @@
         <div>버그 문의 : 카카오아이디 ohranaoh 😉</div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const coverImages = document.querySelectorAll('.cover-image');
+            coverImages.forEach(function(cover) {
+                cover.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const selectedImageSrc = this.src;
+
+                    // 이미지 인덱스를 숨겨진 input에 세팅
+                    document.getElementById('selectedCoverIndex').value = index;
+                    // 선택된 커버 이미지를 표시
+                    document.getElementById('selectedCoverImage').src = selectedImageSrc;
+
+                    // 편지 작성 모달 표시
+                    document.getElementById('letterModal').style.display = 'block';
+                    // 커버 선택 모달 숨김
+                    document.getElementById('coverSelectionModal').style.display = 'none';
+                });
+            });
+
+            document.querySelector('.letter-modal-close').addEventListener('click', function() {
+                document.getElementById('letterModal').style.display = 'none';
+            });
+
+            document.getElementById('letterCancelBtn').addEventListener('click', function() {
+                document.getElementById('letterModal').style.display = 'none';
+            });
+        });
+    </script>
     <script src="/javascripts/sakura.min.js"></script>
     <script src="/javascripts/swiper.min.js"></script>
     <script src="/javascripts/aos.min.js"></script>
@@ -868,34 +885,80 @@
         console.log(letterData);
 
         const letterWrap = document.querySelector('.letter-wrap');
-        const letterContent = document.querySelector('.letter-content-wrap');
-        const index= 1;
+        const allLetterContent = document.querySelector('.all_letter_content');
+        const yongLetterContent = document.querySelector('.yong_letter_content');
+        const woolLetterContent = document.querySelector('.wool_letter_content');
+        let index= 1;
         for(let data of letterData.ALL){
-            letterContent.innerHTML += `
-                <div class="letter-content" data="${index}">
+            allLetterContent.innerHTML += `
+                <div class="letter-content" data-index="${++index}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
+                    <div class="letter-contnet-detail">
+                        <div class="letter-${index}-sender">${data.sender}</div>
+                        <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
+                        <div class="letter-${index}-createAt">${data.createAt}</div>
+                    </div>
                 </div>`;
-
         }
 
         for(let data of letterData.YONG){
-            letterContent.innerHTML += `
-                <div class="letter-content" data="${index}">
+            yongLetterContent.innerHTML += `
+                <div class="letter-content" data-index="${++index}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
+                    <div class="letter-contnet-detail">
+                        <div class="letter-${index}-sender">${data.sender}</div>
+                        <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
+                        <div class="letter-${index}-createAt">${data.createAt}</div>
+                    </div>
                 </div>`;
-
         }
 
         for(let data of letterData.WOOL){
-            letterContent.innerHTML += `
-                <div class="letter-content" data="${index}">
+            woolLetterContent.innerHTML += `
+                <div class="letter-content" data-index="${++index}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
+                    <div class="letter-contnet-detail">
+                        <div class="letter-${index}-sender">${data.sender}</div>
+                        <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
+                        <div class="letter-${index}-createAt">${data.createAt}</div>
+                    </div>
                 </div>`;
-
         }
+
+        const body = document.querySelector('body')
+        const letterDetailModal = document.getElementById("letterDetailModal");
+        const letter = document.querySelectorAll('.letter-content');
+        const letterDetailClose = document.querySelectorAll('.letterDetailCancelBtn');
+
+        letter.forEach(function(e) {
+            e.addEventListener('click', function() {
+                const index = e.dataset.index;
+                const sender = document.querySelector(`.letter-${e.dataset.index}-sender`).innerHTML;
+                const content = document.querySelector(`.letter-${e.dataset.index}-content`).innerHTML;
+                const createAt = document.querySelector(`.letter-${e.dataset.index}-createAt`).innerHTML;
+                const senderInModal = document.querySelector('.letter-modal-detail-sender');
+                const contentInModal = document.querySelector('.letter-modal-detail-content');
+                const createAtInModal = document.querySelector('.letter-modal-detail-createAt');
+                const coverImageIndex = document.getElementById("selectedCoverIndex2");
+
+                document.getElementById('selectedCoverImage2').src = e.querySelector('img').src;
+                senderInModal.innerHTML = sender;
+                contentInModal.innerHTML = content;
+                createAtInModal.innerHTML = createAt;
+                letterDetailModal.style.display = 'block';
+                body.style.overflow = 'hidden';
+            });
+        });
+
+        letterDetailClose.forEach(function(e) {
+            e.addEventListener('click', function() {
+                letterDetailModal.style.display = 'none';
+                body.style.removeProperty('overflow');
+            });
+        });
 
         const coverImages = document.querySelectorAll('.cover-image');
         const coverImageIndex = document.getElementById("selectedCoverIndex");
@@ -905,7 +968,6 @@
         const cancelBtn = document.getElementById("letterCancelBtn");
         const submitBtn = document.getElementById("letterSendBtn");
         const closeBtn = document.querySelectorAll(".letter-modal-close");
-        const body = document.querySelector('body')
 
         // 작성하기 버튼
         writeBtn.onclick = function() {

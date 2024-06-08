@@ -35,9 +35,9 @@ router.get("/0615", function (req, res, next) {
     } else {
       try {
         data = JSON.parse(data);
-        res.render("index", { letterData: data });
+        res.render("index2", { letterData: data });
       } catch (e) {
-        res.render("index", { letterData: "" });
+        res.render("index2", { letterData: "" });
       }
     }
   });
