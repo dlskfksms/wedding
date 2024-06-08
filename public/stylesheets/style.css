@@ -445,17 +445,12 @@ body:has(.gallery-modal.active) {
   top: 50%;
   transform: translate(-50%,-50%);
   text-align: center;
-  width: 90%;
+  width: 80%;
   max-width: 365px;
   z-index: 100;
   background: #fff;
-  padding-top: 47px;
-  padding-bottom: 36px;
-  width: 280px;
   border-radius: 10px;
-  padding: 0 15px;
-  padding-top: 32px;
-  padding-bottom: 25px;
+  padding: 30px 15px;
   box-shadow: 4px 7px 13px rgba(0, 0, 0, 0.2);
 }
 
@@ -834,4 +829,103 @@ footer {
 
 .cover-image {
   width: 100%;
+}
+
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+
+.popup .background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: rgba(0,0,0,0.7);
+}
+
+.popup .in {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  max-width: 365px;
+  z-index: 100;
+  background: #9A8771;
+  border-radius: 10px;
+  padding: 30px 15px;
+  box-shadow: 4px 7px 13px rgba(0, 0, 0, 0.2);
+}
+
+.popup .in .content_1{
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.popup .in .content_2{
+  display: none;
+}
+
+.popup .content_2 .title {
+  color: #000;
+  line-height: 1.3;
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+.popup .content_2 .popup-subtitle {
+  margin-top: 5px;
+  font-weight: 900;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.popup-subtitle svg {
+  margin-right: 8px;
+  margin-top: 3px;
+}
+
+.popup .content_2 .map-guide-color {
+  margin-left: -9px;
+  font-size: 12px;
+}
+
+.popup .btns {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.popup .btns button {
+  color: #fff;
+  background-color: rgba(69, 61, 51, 0.8);
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  /* border : 1px solid #298751; */
+  border: none;
+  font-weight: 500;
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+  width: 80px;
+  border-radius: 8px;
+}
+
+.popup hr {
+  margin-top: 20px;
+}
+
+body.no-scroll {
+  overflow: hidden;
 }
