@@ -478,6 +478,18 @@
                 </div>
                 <div class="letter-content-wrap flex">
                     <!-- 편지지 이미지 동적 세팅 -->
+                    <div class="all_letter letter-group">
+                        <div class="all_letter_title letterTitle">행복 가득한 용준이와 우리에게 온 편지</div>
+                        <div class="all_letter_content letter-group-content"></div>
+                    </div>
+                    <div class="yong_letter letter-group">
+                        <div class="yong_letter_title letterTitle">든든한 용준이에게 온 편지</div>
+                        <div class="yong_letter_content letter-group-content"></div>
+                    </div>
+                    <div class="wool_letter letter-group">
+                        <div class="wool_letter_title letterTitle">사랑스러운 우리에게 온 편지</div>
+                        <div class="wool_letter_content letter-group-content"></div>
+                    </div>
                 </div>
             </div>
 
@@ -857,9 +869,28 @@
 
         const letterWrap = document.querySelector('.letter-wrap');
         const letterContent = document.querySelector('.letter-content-wrap');
-        for(let data of letterData){
+        const index= 1;
+        for(let data of letterData.ALL){
             letterContent.innerHTML += `
-                <div class="letter-content">
+                <div class="letter-content" data="${index}">
+                    <img src="/images/letter_${data.imgIndex}.png">
+                    <div class="letter-content-sender">${data.sender}</div>
+                </div>`;
+
+        }
+
+        for(let data of letterData.YONG){
+            letterContent.innerHTML += `
+                <div class="letter-content" data="${index}">
+                    <img src="/images/letter_${data.imgIndex}.png">
+                    <div class="letter-content-sender">${data.sender}</div>
+                </div>`;
+
+        }
+
+        for(let data of letterData.WOOL){
+            letterContent.innerHTML += `
+                <div class="letter-content" data="${index}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
                 </div>`;

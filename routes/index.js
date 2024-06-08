@@ -4,6 +4,9 @@ const fs = require("fs");
 const router = express.Router();
 
 /* GET home page. */
+/**
+ * 청첩장 첫화면
+ */
 router.get("/", function (req, res, next) {
   const filepath = path.join(__dirname, "letters/sender-data.json");
   fs.readFile(filepath, (err, data) => {
@@ -20,58 +23,96 @@ router.get("/", function (req, res, next) {
   });
 });
 
-router.post("/letter", function (req, res, next) {
-  const senderFilepath = path.join(__dirname, "letters/sender-data.json");
-  fs.readFile(senderFilepath, (err, data) => {
+/**
+ * 청첩장 비공개 화면
+ * (편지 상세 화면 제공)
+ */
+router.get("/0615", function (req, res, next) {
+  const filepath = path.join(__dirname, "letters/letter-data.json");
+  fs.readFile(filepath, (err, data) => {
     if (err) {
-      console.error(err);
-      res.status(500).send({ message: "Internal Server Error" });
+      res.render("index", { letterData: "" });
     } else {
       try {
-        const { sender, content, imgIndex } = req.body;
-        let senderData = JSON.parse(data);
-        senderData.senderList.push({
-          sender: sender,
-          imgIndex: imgIndex,
-        });
-
-        const letterFilPath = path.join(
-          __dirname,
-          `letters/letter-${Date.now()}.json`
-        );
-        let letterData = {
-          sender: sender,
-          content: content,
-          createAt: new Date().toLocaleString("ko-KR", {
-            timeZone: "Asia/Seoul",
-          }),
-        };
-        senderData = JSON.stringify(senderData);
-        letterData = JSON.stringify(letterData);
-
-        fs.writeFile(letterFilPath, letterData, (err) => {
-          if (err) {
-            console.error(err);
-            res.status(500).send({ message: "Internal Server Error" });
-          } else {
-            fs.writeFile(senderFilepath, senderData, (err) => {
-              if (err) {
-                console.error(err);
-                res.status(500).send({ message: "Internal Server Error" });
-              } else {
-                res.send({ message: "Letter saved" });
-              }
-            });
-          }
-        });
+        data = JSON.parse(data);
+        res.render("index", { letterData: data });
       } catch (e) {
-        console.error(e);
-        res.status(500).send({ message: "Internal Server Error" });
+        res.render("index", { letterData: "" });
       }
     }
   });
 });
 
+/**
+ * 편지 저장
+ */
+router.post("/letter", function (req, res, next) {
+  const senderFilepath = path.join(__dirname, "letters/sender-data.json");
+  const letterFilepath = path.join(__dirname, "letters/letter-data.json");
+  fs.readFile(senderFilepath, (err, senderData) => {
+    if (err) {
+      console.log('여기1', err);
+      res.status(500).send({ message: "Internal Server Error" });
+    } else {
+      fs.readFile(letterFilepath, (err, letterData) => {
+        if (err) {
+          console.log('여기2', err);
+          res.status(500).send({ message: "Internal Server Error" });
+        }else{
+          try {
+            const { sender, content, imgIndex, to } = req.body;
+            // Sender List Data
+            senderData = JSON.parse(senderData);
+            console.log(senderData);
+            senderData.senderList.push({
+              sender: sender,
+              imgIndex: imgIndex,
+            });
+            senderData = JSON.stringify(senderData);
+  
+            // Letter Data
+            letterData = JSON.parse(letterData);
+            letterData[to].push({
+              sender: sender,
+              content: content,
+              imgIndex: imgIndex,
+              to: to,
+              createAt: new Date().toLocaleString("ko-KR", {
+                timeZone: "Asia/Seoul",
+              }),
+            });
+            letterData = JSON.stringify(letterData);
+            console.log(letterData);
+  
+            // Save Letter Data
+            fs.writeFile(letterFilepath, letterData, (err) => {
+              if (err) {
+                console.log('여기3', err);
+                res.status(500).send({ message: "Internal Server Error" });
+              } else {
+                fs.writeFile(senderFilepath, senderData, (err) => {
+                  if (err) {
+                    console.log('여기4', err);
+                    res.status(500).send({ message: "Internal Server Error" });
+                  } else {
+                    res.send({ message: "Letter saved" });
+                  }
+                });
+              }
+            });
+          } catch (e) {
+            console.log('여기5', e);
+            res.status(500).send({ message: "Internal Server Error" });
+          }
+        }
+      });
+    }
+  });
+});
+
+/**
+ * 어드민
+ */
 router.get("/admin/:pw", async function (req, res, next) {
   let pw = req.params.pw;
   if (pw === "rana0723") {
