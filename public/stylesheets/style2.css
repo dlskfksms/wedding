@@ -1029,8 +1029,8 @@ footer {
   padding: 5px;
   flex-grow: 1;
   overflow-y: auto;
-  min-height: 65%;
-  height: 72%;
+  min-height: 60%;
+  height: 70%;
   max-height: 85%;
 }
 
