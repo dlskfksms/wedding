@@ -19,9 +19,11 @@
 
     <!-- map api -->
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hxqjwrf42h"></script>
+    <!-- scroll lock library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/body-scroll-lock/3.1.5/bodyScrollLock.min.js"></script>
     <title>박용준 & 이우리 결혼식 청첩장</title>
 </head>
-<body style="overflow: hidden;">
+<body>
     <!--  BGM start -->
     <audio loop autoplay id="bgmAudio">
         <source src="/audio/BGM.mp4">
@@ -476,14 +478,26 @@
                     </div>
                     <button id="letterWriteLetterBtn">편지쓰기</button>
                 </div>
-                <div class="letter-content-wrap flex">
+                <div class="">
                     <!-- 편지지 이미지 동적 세팅 -->
+                    <div class="all_letter letter-group">
+                        <div class="all_letter_title letter-group-title">행복 가득한 용준이와 우리에게 온 편지</div>
+                        <div class="all_letter_content letter-content-wrap flex"></div>
+                    </div>
+                    <div class="yong_letter letter-group">
+                        <div class="yong_letter_title letter-group-title">든든한 용준이에게 온 편지</div>
+                        <div class="yong_letter_content letter-content-wrap flex"></div>
+                    </div>
+                    <div class="wool_letter letter-group">
+                        <div class="wool_letter_title letter-group-title">사랑스러운 우리에게 온 편지</div>
+                        <div class="wool_letter_content letter-content-wrap flex"></div>
+                    </div>
                 </div>
             </div>
 
             <!--  편지 모달 start  -->
             <div id="coverSelectionModal" class="letter-modal">
-                <div class="letter-modal-content">
+                <div class="letter-modal-content letter-modal-content1">
                     <span class="letter-modal-close">&times;</span>
                     <div class="cover-gallery">
                         <div style="height: 24px;">편지지 커버를 선택하세요.</div>
@@ -506,7 +520,7 @@
             </div>
 
             <div id="letterModal" class="letter-modal" style="display:none;">
-                <div class="letter-modal-content">
+                <div class="letter-modal-content letter-modal-content2">
                     <span class="letter-modal-close">&times;</span>
                     <div class="flex" style="margin-top: 15px;"><img src="" width="35%" id="selectedCoverImage"></div>
                     <div id="letterForm">
@@ -533,36 +547,25 @@
                 </div>
             </div>
 
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const coverImages = document.querySelectorAll('.cover-image');
-                    coverImages.forEach(function(cover) {
-                        cover.addEventListener('click', function() {
-                            const index = this.getAttribute('data-index');
-                            const selectedImageSrc = this.src;
-
-                            // 이미지 인덱스를 숨겨진 input에 세팅
-                            document.getElementById('selectedCoverIndex').value = index;
-                            // 선택된 커버 이미지를 표시
-                            document.getElementById('selectedCoverImage').src = selectedImageSrc;
-
-                            // 편지 작성 모달 표시
-                            document.getElementById('letterModal').style.display = 'block';
-                            // 커버 선택 모달 숨김
-                            document.getElementById('coverSelectionModal').style.display = 'none';
-                        });
-                    });
-
-                    document.querySelector('.letter-modal-close').addEventListener('click', function() {
-                        document.getElementById('letterModal').style.display = 'none';
-                    });
-
-                    document.getElementById('letterCancelBtn').addEventListener('click', function() {
-                        document.getElementById('letterModal').style.display = 'none';
-                    });
-                });
-            </script>
-
+            <div id="letterDetailModal" class="letter-modal-detail" style="display:none;">
+                <div class="letter-modal-detail-content-wrap">
+                    <span class="letter-modal-deatil-close letterDetailCancelBtn">&times;</span>
+                    <div class="flex" style="margin-top: 15px;">
+                        <img src="" width="35%" id="selectedCoverImage2">
+                    </div>
+                    <div style="min-height: 50%;height: 70%;">
+                        <div class="letter-modal-detail-label">
+                            💌 보낸 사람 : <span class="letter-modal-detail-sender"></span>
+                        </div>
+                        <div class="letter-modal-detail-labell">💌 편지 내용</div>
+                        <div class="letter-modal-detail-content"></div>
+                    </div>
+                    <div class="letter-modal-detail-createAt"></div>
+                    <div class="letter-modal-detail-button">
+                        <button type="button" class="letter-modal-deatil-close-button letterDetailCancelBtn">닫기</button>
+                    </div>
+                </div>
+            </div>
             <!--  편지 모달 end  -->
         </section>
     </section>
@@ -658,6 +661,36 @@
         <div>버그 문의 : 카카오아이디 ohranaoh 😉</div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            bodyScrollLock.disableBodyScroll(document.querySelector('.popup'));
+            const coverImages = document.querySelectorAll('.cover-image');
+            coverImages.forEach(function(cover) {
+                cover.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const selectedImageSrc = this.src;
+
+                    // 이미지 인덱스를 숨겨진 input에 세팅
+                    document.getElementById('selectedCoverIndex').value = index;
+                    // 선택된 커버 이미지를 표시
+                    document.getElementById('selectedCoverImage').src = selectedImageSrc;
+
+                    // 편지 작성 모달 표시
+                    document.getElementById('letterModal').style.display = 'block';
+                    // 커버 선택 모달 숨김
+                    document.getElementById('coverSelectionModal').style.display = 'none';
+                });
+            });
+
+            document.querySelector('.letter-modal-close').addEventListener('click', function() {
+                document.getElementById('letterModal').style.display = 'none';
+            });
+
+            document.getElementById('letterCancelBtn').addEventListener('click', function() {
+                document.getElementById('letterModal').style.display = 'none';
+            });
+        });
+    </script>
     <script src="/javascripts/sakura.min.js"></script>
     <script src="/javascripts/swiper.min.js"></script>
     <script src="/javascripts/aos.min.js"></script>
@@ -764,7 +797,7 @@
         const alertBtn = document.querySelector('.alert .btns');
         alertBtn.addEventListener('click', function (){
             alertBox.style.display = 'none';
-            document.querySelector('body').style.removeProperty('overflow');
+            bodyScrollLock.enableBodyScroll(document.querySelector('.copy'));
         });
 
         // 복사 이벤트
@@ -777,7 +810,7 @@
             document.execCommand('copy');
             document.body.removeChild(t);
             alertBox.style.display = 'block'
-            document.querySelector('body').style.overflow = 'hidden';
+            bodyScrollLock.disableBodyScroll(document.querySelector('.copy'));
         }
 
         // 계좌번호 이벤트
@@ -816,7 +849,7 @@
 
         popupOkBtn.addEventListener('click', function(){
             popup.style.display = 'none';
-            document.querySelector('body').style.removeProperty('overflow');
+            bodyScrollLock.enableBodyScroll(document.querySelector('.popup'));
         });
 
         shuttleOpenBtn.addEventListener('click', function(){
@@ -855,16 +888,108 @@
         let letterDataLength = letterData.length;
         console.log(letterData);
 
-        const letterWrap = document.querySelector('.letter-wrap');
-        const letterContent = document.querySelector('.letter-content-wrap');
-        for(let data of letterData){
-            letterContent.innerHTML += `
-                <div class="letter-content">
+        const allLetterContent = document.querySelector('.all_letter_content');
+        const yongLetterContent = document.querySelector('.yong_letter_content');
+        const woolLetterContent = document.querySelector('.wool_letter_content');
+        let index= 1;
+        for(let data of letterData.ALL){
+            allLetterContent.innerHTML += `
+                <div class="letter-content" data-index="${++index}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
+                    <div class="letter-contnet-detail">
+                        <div class="letter-${index}-sender">${data.sender}</div>
+                        <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
+                        <div class="letter-${index}-createAt">${data.createAt}</div>
+                        <div class="letter-${index}-to">${data.to}</div>
+                    </div>
                 </div>`;
-
         }
+
+        for(let data of letterData.YONG){
+            yongLetterContent.innerHTML += `
+                <div class="letter-content" data-index="${++index}">
+                    <img src="/images/letter_${data.imgIndex}.png">
+                    <div class="letter-content-sender">${data.sender}</div>
+                    <div class="letter-contnet-detail">
+                        <div class="letter-${index}-sender">${data.sender}</div>
+                        <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
+                        <div class="letter-${index}-createAt">${data.createAt}</div>
+                        <div class="letter-${index}-to">${data.to}</div>
+                    </div>
+                </div>`;
+        }
+
+        for(let data of letterData.WOOL){
+            woolLetterContent.innerHTML += `
+                <div class="letter-content" data-index="${++index}">
+                    <img src="/images/letter_${data.imgIndex}.png">
+                    <div class="letter-content-sender">${data.sender}</div>
+                    <div class="letter-contnet-detail">
+                        <div class="letter-${index}-sender">${data.sender}</div>
+                        <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
+                        <div class="letter-${index}-createAt">${data.createAt}</div>
+                        <div class="letter-${index}-to">${data.to}</div>
+                    </div>
+                </div>`;
+        }
+
+        function openModalWithPasswordCheck(e) {
+            const correctPassword = '결혼축하해';
+            if (sessionStorage.getItem('passwordPassed') !== 'true') {
+                const userPassword = prompt("비밀번호를 입력하세요:");
+                if (userPassword !== correctPassword) {
+                    alert("비밀번호가 틀렸습니다.");
+                    return;
+                } else {
+                    sessionStorage.setItem('passwordPassed', 'true');
+                }
+            }
+
+            const format = (to, createAt) => {
+                switch (to) {
+                    case 'ALL':
+                        return `${createAt} 용준이와 우리에게.`;
+                    case 'YONG':
+                        return `${createAt} 용준이에게.`;
+                    case 'WOOL':
+                        return `${createAt} 우리에게.`;
+                }
+            }
+
+            const index = e.dataset.index;
+            const sender = document.querySelector(`.letter-${index}-sender`).innerHTML;
+            const content = document.querySelector(`.letter-${index}-content`).innerHTML;
+            const createAt = document.querySelector(`.letter-${index}-createAt`).innerHTML;
+            const to = document.querySelector(`.letter-${index}-to`).innerHTML;
+            const senderInModal = document.querySelector('.letter-modal-detail-sender');
+            const contentInModal = document.querySelector('.letter-modal-detail-content');
+            const createAtInModal = document.querySelector('.letter-modal-detail-createAt');
+
+            document.getElementById('selectedCoverImage2').src = e.querySelector('img').src;
+            senderInModal.innerHTML = sender;
+            contentInModal.innerHTML = content;
+            createAtInModal.innerHTML = format(to, createAt);
+            document.getElementById('letterDetailModal').style.display = 'flex';
+            bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-detail-content'));
+        }
+
+        const letterDetailModal = document.getElementById("letterDetailModal");
+        const letter = document.querySelectorAll('.letter-content');
+        const letterDetailClose = document.querySelectorAll('.letterDetailCancelBtn');
+
+        letter.forEach(function(e) {
+            e.addEventListener('click', function() {
+                openModalWithPasswordCheck(e);
+            });
+        });
+
+        letterDetailClose.forEach(function(e) {
+            e.addEventListener('click', function() {
+                letterDetailModal.style.display = 'none';
+                bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-detail-content'));
+            });
+        });
 
         const coverImages = document.querySelectorAll('.cover-image');
         const coverImageIndex = document.getElementById("selectedCoverIndex");
@@ -874,14 +999,13 @@
         const cancelBtn = document.getElementById("letterCancelBtn");
         const submitBtn = document.getElementById("letterSendBtn");
         const closeBtn = document.querySelectorAll(".letter-modal-close");
-        const body = document.querySelector('body')
 
         // 작성하기 버튼
         writeBtn.onclick = function() {
             letterCoverPickModal.style.display = "block";
             letterCoverPickModal.style.overflow = "hidden";
             letterWriteModal.style.overflow = "hidden";
-            body.style.overflow = 'hidden';
+            bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-content1'));
         }
 
         coverImages.forEach(function(cover) {
@@ -893,6 +1017,7 @@
 
                 // 편지 작성 모달 표시
                 letterWriteModal.style.display = 'block';
+                bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-content2'));
                 // 커버 선택 모달 숨김
                 letterCoverPickModal.style.display = 'none';
             });
@@ -903,7 +1028,8 @@
             letterWriteModal.style.display = "none";
             letterWriteModal.style.removeProperty('overflow');
             letterCoverPickModal.style.removeProperty('overflow');
-            body.style.removeProperty('overflow');
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content1'));
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content2'));
         }
 
         // 닫기 버튼
@@ -913,7 +1039,8 @@
                 letterWriteModal.style.display = "none";
                 letterWriteModal.style.removeProperty('overflow');
                 letterCoverPickModal.style.removeProperty('overflow');
-                body.style.removeProperty('overflow');
+                bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content1'));
+                bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content2'));
             });
         });
 
@@ -956,20 +1083,11 @@
 
             letterCoverPickModal.style.removeProperty('overflow');
             letterWriteModal.style.removeProperty('overflow');
-            body.style.removeProperty('overflow');
             sender.value = '';
             content.value = '';
-        }
 
-        // 모달 밖 클릭 이벤트
-        window.onclick = function(event) {
-            if (event.target == letterCoverPickModal) {
-                letterCoverPickModal.style.display = "none";
-            }
-
-            if (event.target == letterWriteModal) {
-                letterWriteModal.style.display = "none";
-            }
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content1'));
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content2'));
         }
     </script>
 
