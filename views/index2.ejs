@@ -19,6 +19,8 @@
 
     <!-- map api -->
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hxqjwrf42h"></script>
+    <!-- scroll lock library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/body-scroll-lock/3.1.5/bodyScrollLock.min.js"></script>
     <title>박용준 & 이우리 결혼식 청첩장</title>
 </head>
 <body >
@@ -495,7 +497,7 @@
 
             <!--  편지 모달 start  -->
             <div id="coverSelectionModal" class="letter-modal">
-                <div class="letter-modal-content">
+                <div class="letter-modal-content letter-modal-content1">
                     <span class="letter-modal-close">&times;</span>
                     <div class="cover-gallery">
                         <div style="height: 24px;">편지지 커버를 선택하세요.</div>
@@ -518,7 +520,7 @@
             </div>
 
             <div id="letterModal" class="letter-modal" style="display:none;">
-                <div class="letter-modal-content">
+                <div class="letter-modal-content letter-modal-content2">
                     <span class="letter-modal-close">&times;</span>
                     <div class="flex" style="margin-top: 15px;"><img src="" width="35%" id="selectedCoverImage"></div>
                     <div id="letterForm">
@@ -928,7 +930,6 @@
                 </div>`;
         }
 
-        const body = document.querySelector('body')
         const letterDetailModal = document.getElementById("letterDetailModal");
         const letter = document.querySelectorAll('.letter-content');
         const letterDetailClose = document.querySelectorAll('.letterDetailCancelBtn');
@@ -948,14 +949,15 @@
                 contentInModal.innerHTML = content;
                 createAtInModal.innerHTML = createAt;
                 letterDetailModal.style.display = 'block';
-                body.style.overflow = 'hidden';
+                bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-detail-content'));
+                
             });
         });
 
         letterDetailClose.forEach(function(e) {
             e.addEventListener('click', function() {
                 letterDetailModal.style.display = 'none';
-                body.style.removeProperty('overflow');
+                bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-detail-content'));
             });
         });
 
@@ -973,7 +975,7 @@
             letterCoverPickModal.style.display = "block";
             letterCoverPickModal.style.overflow = "hidden";
             letterWriteModal.style.overflow = "hidden";
-            body.style.overflow = 'hidden';
+            bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-content1'));
         }
 
         coverImages.forEach(function(cover) {
@@ -985,6 +987,7 @@
 
                 // 편지 작성 모달 표시
                 letterWriteModal.style.display = 'block';
+                bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-content2'));
                 // 커버 선택 모달 숨김
                 letterCoverPickModal.style.display = 'none';
             });
@@ -995,7 +998,8 @@
             letterWriteModal.style.display = "none";
             letterWriteModal.style.removeProperty('overflow');
             letterCoverPickModal.style.removeProperty('overflow');
-            body.style.removeProperty('overflow');
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content1'));
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content2'));
         }
 
         // 닫기 버튼
@@ -1005,7 +1009,8 @@
                 letterWriteModal.style.display = "none";
                 letterWriteModal.style.removeProperty('overflow');
                 letterCoverPickModal.style.removeProperty('overflow');
-                body.style.removeProperty('overflow');
+                bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content1'));
+                bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content2'));
             });
         });
 
@@ -1048,20 +1053,11 @@
 
             letterCoverPickModal.style.removeProperty('overflow');
             letterWriteModal.style.removeProperty('overflow');
-            body.style.removeProperty('overflow');
             sender.value = '';
             content.value = '';
-        }
 
-        // 모달 밖 클릭 이벤트
-        window.onclick = function(event) {
-            if (event.target == letterCoverPickModal) {
-                letterCoverPickModal.style.display = "none";
-            }
-
-            if (event.target == letterWriteModal) {
-                letterWriteModal.style.display = "none";
-            }
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content1'));
+            bodyScrollLock.enableBodyScroll(document.querySelector('.letter-modal-content2'));
         }
     </script>
 
