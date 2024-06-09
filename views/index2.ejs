@@ -900,6 +900,7 @@
                         <div class="letter-${index}-sender">${data.sender}</div>
                         <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
                         <div class="letter-${index}-createAt">${data.createAt}</div>
+                        <div class="letter-${index}-to">${data.to}</div>
                     </div>
                 </div>`;
         }
@@ -913,6 +914,7 @@
                         <div class="letter-${index}-sender">${data.sender}</div>
                         <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
                         <div class="letter-${index}-createAt">${data.createAt}</div>
+                        <div class="letter-${index}-to">${data.to}</div>
                     </div>
                 </div>`;
         }
@@ -926,6 +928,7 @@
                         <div class="letter-${index}-sender">${data.sender}</div>
                         <div class="letter-${index}-content">${data.content.replace(/\n/g, "<br />")}</div>
                         <div class="letter-${index}-createAt">${data.createAt}</div>
+                        <div class="letter-${index}-to">${data.to}</div>
                     </div>
                 </div>`;
         }
@@ -942,10 +945,22 @@
                 }
             }
 
+            const format = (to, createAt) => {
+                switch (to) {
+                    case 'ALL':
+                        return `${createAt} 용준이와 우리에게.`;
+                    case 'YONG':
+                        return `${createAt} 용준이에게.`;
+                    case 'WOOL':
+                        return `${createAt} 우리에게.`;
+                }
+            }
+
             const index = e.dataset.index;
             const sender = document.querySelector(`.letter-${index}-sender`).innerHTML;
             const content = document.querySelector(`.letter-${index}-content`).innerHTML;
             const createAt = document.querySelector(`.letter-${index}-createAt`).innerHTML;
+            const to = document.querySelector(`.letter-${index}-to`).innerHTML;
             const senderInModal = document.querySelector('.letter-modal-detail-sender');
             const contentInModal = document.querySelector('.letter-modal-detail-content');
             const createAtInModal = document.querySelector('.letter-modal-detail-createAt');
@@ -953,7 +968,7 @@
             document.getElementById('selectedCoverImage2').src = e.querySelector('img').src;
             senderInModal.innerHTML = sender;
             contentInModal.innerHTML = content;
-            createAtInModal.innerHTML = createAt;
+            createAtInModal.innerHTML = format(to, createAt);
             document.getElementById('letterDetailModal').style.display = 'flex';
             bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-detail-content'));
         }

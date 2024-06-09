@@ -51,24 +51,41 @@ router.post("/letter", function (req, res, next) {
   const letterFilepath = path.join(__dirname, "letters/letter-data.json");
   fs.readFile(senderFilepath, (err, senderData) => {
     if (err) {
-      console.log('여기1', err);
       res.status(500).send({ message: "Internal Server Error" });
     } else {
       fs.readFile(letterFilepath, (err, letterData) => {
         if (err) {
-          console.log('여기2', err);
           res.status(500).send({ message: "Internal Server Error" });
         }else{
           try {
             const { sender, content, imgIndex, to } = req.body;
             // Sender List Data
             senderData = JSON.parse(senderData);
-            console.log(senderData);
             senderData.senderList.push({
               sender: sender,
               imgIndex: imgIndex,
             });
             senderData = JSON.stringify(senderData);
+
+            const options = {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true,
+                timeZone: 'Asia/Seoul'
+            };
+            
+            const now = new Date();
+            let formattedDate = new Intl.DateTimeFormat('ko-KR', options).format(now);
+            
+            // 형식 변환을 위해 추가적인 조작 수행
+            formattedDate = formattedDate
+                .replace(/\s/g, '') // 모든 공백 제거
+                .replace(/(\d{4})\.(\d{2})\.(\d{2})\.(오전|오후)(\d{2}):(\d{2})/, (match, year, month, day, period, hour, minute) => {
+                    return `${year}.${month}.${day} ${period}${hour}:${minute}`;
+                });
   
             // Letter Data
             letterData = JSON.parse(letterData);
@@ -77,22 +94,17 @@ router.post("/letter", function (req, res, next) {
               content: content,
               imgIndex: imgIndex,
               to: to,
-              createAt: new Date().toLocaleString("ko-KR", {
-                timeZone: "Asia/Seoul",
-              }),
+              createAt: formattedDate,
             });
             letterData = JSON.stringify(letterData);
-            console.log(letterData);
   
             // Save Letter Data
             fs.writeFile(letterFilepath, letterData, (err) => {
               if (err) {
-                console.log('여기3', err);
                 res.status(500).send({ message: "Internal Server Error" });
               } else {
                 fs.writeFile(senderFilepath, senderData, (err) => {
                   if (err) {
-                    console.log('여기4', err);
                     res.status(500).send({ message: "Internal Server Error" });
                   } else {
                     res.send({ message: "Letter saved" });
@@ -101,7 +113,7 @@ router.post("/letter", function (req, res, next) {
               }
             });
           } catch (e) {
-            console.log('여기5', e);
+            console.log(e);
             res.status(500).send({ message: "Internal Server Error" });
           }
         }
