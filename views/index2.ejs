@@ -930,27 +930,41 @@
                 </div>`;
         }
 
+        function openModalWithPasswordCheck(e) {
+            const correctPassword = '결혼축하해';
+            if (sessionStorage.getItem('passwordPassed') !== 'true') {
+                const userPassword = prompt("비밀번호를 입력하세요:");
+                if (userPassword !== correctPassword) {
+                    alert("비밀번호가 틀렸습니다.");
+                    return;
+                } else {
+                    sessionStorage.setItem('passwordPassed', 'true');
+                }
+            }
+
+            const index = e.dataset.index;
+            const sender = document.querySelector(`.letter-${index}-sender`).innerHTML;
+            const content = document.querySelector(`.letter-${index}-content`).innerHTML;
+            const createAt = document.querySelector(`.letter-${index}-createAt`).innerHTML;
+            const senderInModal = document.querySelector('.letter-modal-detail-sender');
+            const contentInModal = document.querySelector('.letter-modal-detail-content');
+            const createAtInModal = document.querySelector('.letter-modal-detail-createAt');
+
+            document.getElementById('selectedCoverImage2').src = e.querySelector('img').src;
+            senderInModal.innerHTML = sender;
+            contentInModal.innerHTML = content;
+            createAtInModal.innerHTML = createAt;
+            document.getElementById('letterDetailModal').style.display = 'flex';
+            bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-detail-content-wrap'));
+        }
+
         const letterDetailModal = document.getElementById("letterDetailModal");
         const letter = document.querySelectorAll('.letter-content');
         const letterDetailClose = document.querySelectorAll('.letterDetailCancelBtn');
 
         letter.forEach(function(e) {
             e.addEventListener('click', function() {
-                const index = e.dataset.index;
-                const sender = document.querySelector(`.letter-${e.dataset.index}-sender`).innerHTML;
-                const content = document.querySelector(`.letter-${e.dataset.index}-content`).innerHTML;
-                const createAt = document.querySelector(`.letter-${e.dataset.index}-createAt`).innerHTML;
-                const senderInModal = document.querySelector('.letter-modal-detail-sender');
-                const contentInModal = document.querySelector('.letter-modal-detail-content');
-                const createAtInModal = document.querySelector('.letter-modal-detail-createAt');
-
-                document.getElementById('selectedCoverImage2').src = e.querySelector('img').src;
-                senderInModal.innerHTML = sender;
-                contentInModal.innerHTML = content;
-                createAtInModal.innerHTML = createAt;
-                letterDetailModal.style.display = 'block';
-                bodyScrollLock.disableBodyScroll(document.querySelector('.letter-modal-detail-content'));
-                
+                openModalWithPasswordCheck(e);
             });
         });
 
