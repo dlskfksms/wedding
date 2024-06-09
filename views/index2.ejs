@@ -545,21 +545,22 @@
                 </div>
             </div>
 
-            <div id="letterDetailModal" class="letter-modal" style="display:none;">
-                <div class="letter-modal-content">
-                    <span class="letterDetailCancelBtn">&times;</span>
-                    <div class="flex" style="margin-top: 15px;"><img src="" width="35%" id="selectedCoverImage2"></div>
-                    <div id="letterDetailForm">
-                        <input type="hidden" id="selectedCoverIndex2" name="selectedCoverIndex2">
-                        <div class="letter-modal-label" style="margin-top: -20px;">
+            <div id="letterDetailModal" class="letter-modal-detail" style="display:none;">
+                <div class="letter-modal-detail-content-wrap">
+                    <span class="letter-modal-deatil-close letterDetailCancelBtn">&times;</span>
+                    <div class="flex" style="margin-top: 15px;">
+                        <img src="" width="35%" id="selectedCoverImage2">
+                    </div>
+                    <div style="min-height: 50%;height: 70%;">
+                        <div class="letter-modal-detail-label">
                             💌 보낸 사람 : <span class="letter-modal-detail-sender"></span>
                         </div>
-                        <div class="letter-modal-label">💌 편지 내용</div>
+                        <div class="letter-modal-detail-labell">💌 편지 내용</div>
                         <div class="letter-modal-detail-content"></div>
-                        <div class="letter-modal-detail-createAt"></div>
-                        <div class="letter-modal-button">
-                            <button type="button" class="letterDetailCancelBtn">닫기</button>
-                        </div>
+                    </div>
+                    <div class="letter-modal-detail-createAt"></div>
+                    <div class="letter-modal-detail-button">
+                        <button type="button" class="letter-modal-deatil-close-button letterDetailCancelBtn">닫기</button>
                     </div>
                 </div>
             </div>
@@ -884,7 +885,6 @@
         let letterDataLength = letterData.length;
         console.log(letterData);
 
-        const letterWrap = document.querySelector('.letter-wrap');
         const allLetterContent = document.querySelector('.all_letter_content');
         const yongLetterContent = document.querySelector('.yong_letter_content');
         const woolLetterContent = document.querySelector('.wool_letter_content');
@@ -942,7 +942,6 @@
                 const senderInModal = document.querySelector('.letter-modal-detail-sender');
                 const contentInModal = document.querySelector('.letter-modal-detail-content');
                 const createAtInModal = document.querySelector('.letter-modal-detail-createAt');
-                const coverImageIndex = document.getElementById("selectedCoverIndex2");
 
                 document.getElementById('selectedCoverImage2').src = e.querySelector('img').src;
                 senderInModal.innerHTML = sender;
