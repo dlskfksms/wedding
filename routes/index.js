@@ -23,15 +23,6 @@ router.get("/", function (req, res, next) {
   });
 });
 
-router.get("/test", function (req, res, next) {
-  const { format } = require('date-fns');
-  const { ko } = require('date-fns/locale');
-
-  const now = new Date();
-  const formattedDate = format(now, "yyyy.MM.dd ahh:mm", { locale: ko });
-  res.send({ message: formattedDate });
-});
-
 /**
  * 편지 저장
  */
