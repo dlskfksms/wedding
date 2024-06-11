@@ -551,7 +551,7 @@
                 <div class="letter-modal-detail-content-wrap">
                     <span class="letter-modal-deatil-close letterDetailCancelBtn">&times;</span>
                     <div class="flex" style="margin-top: 15px;">
-                        <img src="" width="35%" id="selectedCoverImage2">
+                        <img src="" id="selectedCoverImage2">
                     </div>
                     <div style="min-height: 50%;height: 70%;">
                         <div class="letter-modal-detail-label">
@@ -891,10 +891,10 @@
         const allLetterContent = document.querySelector('.all_letter_content');
         const yongLetterContent = document.querySelector('.yong_letter_content');
         const woolLetterContent = document.querySelector('.wool_letter_content');
-        let index= 1;
+        let index= 0;
         for(let data of letterData.ALL){
             allLetterContent.innerHTML += `
-                <div class="letter-content" data-index="${++index}">
+                <div class="letter-content" data-index="${++index}" data-img-index="${data.imgIndex}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
                     <div class="letter-contnet-detail">
@@ -908,7 +908,7 @@
 
         for(let data of letterData.YONG){
             yongLetterContent.innerHTML += `
-                <div class="letter-content" data-index="${++index}">
+                <div class="letter-content" data-index="${++index}" data-img-index="${data.imgIndex}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
                     <div class="letter-contnet-detail">
@@ -922,7 +922,7 @@
 
         for(let data of letterData.WOOL){
             woolLetterContent.innerHTML += `
-                <div class="letter-content" data-index="${++index}">
+                <div class="letter-content" data-index="${++index}" data-img-index="${data.imgIndex}">
                     <img src="/images/letter_${data.imgIndex}.png">
                     <div class="letter-content-sender">${data.sender}</div>
                     <div class="letter-contnet-detail">
@@ -966,7 +966,14 @@
             const contentInModal = document.querySelector('.letter-modal-detail-content');
             const createAtInModal = document.querySelector('.letter-modal-detail-createAt');
 
-            document.getElementById('selectedCoverImage2').src = e.querySelector('img').src;
+            const coverImage = document.getElementById('selectedCoverImage2');
+            if(e.dataset.imgIndex === '13'){
+                coverImage.src = '/images/letter_13_love.png';
+                coverImage.style.width = '60%';
+            } else {
+                coverImage.src = e.querySelector('img').src;
+                coverImage.style.width = '35%';
+            }
             senderInModal.innerHTML = sender;
             contentInModal.innerHTML = content;
             createAtInModal.innerHTML = format(to, createAt);
