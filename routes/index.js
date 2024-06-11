@@ -23,6 +23,15 @@ router.get("/", function (req, res, next) {
   });
 });
 
+router.get("/test", function (req, res, next) {
+  const { format } = require('date-fns');
+  const { ko } = require('date-fns/locale');
+
+  const now = new Date();
+  const formattedDate = format(now, "yyyy.MM.dd ahh:mm", { locale: ko });
+  res.send({ message: formattedDate });
+});
+
 /**
  * 편지 저장
  */
@@ -34,24 +43,11 @@ router.post("/letter", function (req, res, next) {
     }else{
       try {
         const { sender, content, imgIndex, to } = req.body;
-        const options = {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-            timeZone: 'Asia/Seoul'
-        };
+
+        const { format } = require('date-fns');
+        const { ko } = require('date-fns/locale');
         const now = new Date();
-        let formattedDate = new Intl.DateTimeFormat('ko-KR', options).format(now);
-        
-        // 형식 변환을 위해 추가적인 조작 수행
-        formattedDate = formattedDate
-            .replace(/\s/g, '') // 모든 공백 제거
-            .replace(/(\d{4})\.(\d{2})\.(\d{2})\.(오전|오후)(\d{2}):(\d{2})/, (match, year, month, day, period, hour, minute) => {
-                return `${year}.${month}.${day} ${period}${hour}:${minute}`;
-            });
+        const formattedDate = format(now, "yyyy.MM.dd ahh:mm", { locale: ko });
 
         // Letter Data
         letterData = JSON.parse(letterData);
