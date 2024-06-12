@@ -530,6 +530,7 @@
 
                         <div class="letter-modal-label">💌 받는 사람</div>
                         <select id="to" name="to">
+                            <option value="none">선택 하세요.</option>
                             <option value="ALL">행복 가득한 용준이와 우리에게</option>
                             <option value="YONG">든든한 용준이에게</option>
                             <option value="WOOL">사랑스러운 우리에게</option>
@@ -588,7 +589,7 @@
 
     <!-- 안내 팝업 start -->
     <section>
-        <div class="popup">
+        <div class="popup" style="display: none;">
             <div class="background"></div>
             <div class="in">
                 <div class="content_1">
@@ -663,7 +664,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            bodyScrollLock.disableBodyScroll(document.querySelector('.popup'));
+            // bodyScrollLock.disableBodyScroll(document.querySelector('.popup'));
             const coverImages = document.querySelectorAll('.cover-image');
             coverImages.forEach(function(cover) {
                 cover.addEventListener('click', function() {
@@ -1060,6 +1061,11 @@
 
             if (sender.value.trim() === "" || content.value.trim() === "") {
                 alert("모든 입력 칸에 내용을 채워주세요.");
+                return;
+            }
+
+            if(to.value === "none") {
+                alert("받는 사람을 선택해주세요.");
                 return;
             }
 
